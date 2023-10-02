@@ -53,3 +53,8 @@ dkms.conf
 *.gabriel
 *@*
 *.0???
+*.__i
+*.tmp
+*._ac
+RTE_Components.h
+Objects/*
