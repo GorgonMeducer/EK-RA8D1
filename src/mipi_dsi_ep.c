@@ -20,17 +20,23 @@
  *
  * Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
+ 
+#include "RTE_Components.h"
 #include "gt911.h"
 #include "mipi_dsi_ep.h"
 #include "r_mipi_dsi.h"
 #include "hal_data.h"
 #include "common_utils.h"
-#include "arm_2d_helper.h"
-#include "arm_2d_scenes.h"
+#include "perf_counter.h"
 
-#include "arm_2d_disp_adapters.h"
-#ifdef RTE_Acceleration_Arm_2D_Extra_Benchmark
-#   include "arm_2d_benchmark.h"
+#if defined(RTE_Acceleration_Arm_2D)
+#   include "arm_2d_helper.h"
+#   include "arm_2d_scenes.h"
+
+#   include "arm_2d_disp_adapters.h"
+#   ifdef RTE_Acceleration_Arm_2D_Extra_Benchmark
+#       include "arm_2d_benchmark.h"
+#   endif
 #endif
 
 #ifdef RTE_Compiler_EventRecorder
@@ -408,7 +414,8 @@ void mipi_dsi_start_display(void)
         g_vsync_flag = RESET_FLAG;
         while (g_vsync_flag);
     }
-    
+
+#if defined(RTE_Acceleration_Arm_2D)
     printf("Arm-2D running on RA8D1\r\n");
     
     arm_2d_init();
@@ -497,6 +504,15 @@ void mipi_dsi_start_display(void)
     while(true) {
         while(arm_fsm_rt_cpl != disp_adapter0_task()) __NOP();
     }
+#endif
+#else
+    printf("\r\n Run Coremark...\r\n");
+    coremark_main();
+    
+    while(1) {
+        
+    }
+
 #endif
 }
 

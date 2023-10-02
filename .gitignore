@@ -58,3 +58,5 @@ dkms.conf
 *._ac
 RTE_Components.h
 Objects/*
+JLinkLog.txt
+Pre_Include_Global.h
