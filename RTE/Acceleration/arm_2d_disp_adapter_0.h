@@ -57,26 +57,26 @@ extern "C" {
 // <i> The width of your screen
 // <i> Default: 320
 #ifndef __DISP0_CFG_SCEEN_WIDTH__
-#   define __DISP0_CFG_SCEEN_WIDTH__                               320
+#   define __DISP0_CFG_SCEEN_WIDTH__                               480
 #endif
 
 // <o>Height of the screen <8-32767>
 // <i> The height of your screen
 // <i> Default: 240
 #ifndef __DISP0_CFG_SCEEN_HEIGHT__
-#   define __DISP0_CFG_SCEEN_HEIGHT__                              240
+#   define __DISP0_CFG_SCEEN_HEIGHT__                              854
 #endif
 
 // <o>Width of the PFB block
 // <i> The width of your PFB block size used in disp0
 #ifndef __DISP0_CFG_PFB_BLOCK_WIDTH__
-#   define __DISP0_CFG_PFB_BLOCK_WIDTH__                           320
+#   define __DISP0_CFG_PFB_BLOCK_WIDTH__                           480
 #endif
 
 // <o>Height of the PFB block
 // <i> The height of your PFB block size used in disp0
 #ifndef __DISP0_CFG_PFB_BLOCK_HEIGHT__
-#   define __DISP0_CFG_PFB_BLOCK_HEIGHT__                          240
+#   define __DISP0_CFG_PFB_BLOCK_HEIGHT__                          86
 #endif
 
 // <o>Width Alignment of generated PFBs
