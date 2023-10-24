@@ -119,8 +119,13 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>ARMRTXEVENTFLAGS</Key>
+          <Name>-L70 -Z18 -C0 -M0 -T1</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(6010=261,375,738,971,0)(6018=-1,-1,-1,-1,0)(6019=-1,-1,-1,-1,0)(6008=135,169,429,354,0)(6009=1118,249,1412,434,0)(6014=-1,-1,-1,-1,0)(6015=93,236,351,858,0)(6003=135,169,717,705,0)(6000=535,315,988,647,0)</Name>
+          <Name>(6010=261,375,738,971,0)(6018=-1,-1,-1,-1,0)(6019=-1,-1,-1,-1,0)(6008=135,169,429,354,0)(6009=1118,249,1412,434,0)(6014=120,153,378,884,0)(6015=93,236,351,858,0)(6003=135,169,717,705,0)(6000=535,315,988,647,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -221,6 +226,11 @@
       <ScvdPack>
         <Filename>C:\Users\gabriel\AppData\Local\Arm\Packs\Keil\ARM_Compiler\1.7.2\EventRecorder.scvd</Filename>
         <Type>Keil.ARM_Compiler.1.7.2</Type>
+        <SubType>1</SubType>
+      </ScvdPack>
+      <ScvdPack>
+        <Filename>C:\Users\gabriel\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\RTOS2\RTX\RTX5.scvd</Filename>
+        <Type>ARM.CMSIS.5.9.0</Type>
         <SubType>1</SubType>
       </ScvdPack>
       <Tracepoint>
@@ -429,6 +439,14 @@
   </Group>
 
   <Group>
+    <GroupName>::Acceleration</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>1</RteFlg>
+  </Group>
+
+  <Group>
     <GroupName>::CMSIS</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
@@ -438,7 +456,7 @@
 
   <Group>
     <GroupName>::Compiler</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>

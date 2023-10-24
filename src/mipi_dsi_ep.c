@@ -29,6 +29,10 @@
 #include "common_utils.h"
 #include "perf_counter.h"
 
+#if defined(RTE_CMSIS_RTOS2)
+#   include "cmsis_os2.h"
+#endif
+
 #if defined(RTE_Acceleration_Arm_2D)
 #   include "arm_2d_helper.h"
 #   include "arm_2d_scenes.h"

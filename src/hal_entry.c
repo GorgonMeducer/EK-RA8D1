@@ -30,11 +30,12 @@ FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
 
-
+#if !defined(RTE_CMSIS_RTOS2)
 void SysTick_Handler(void)
 {
 
 }
+#endif
 
 
 /*******************************************************************************************************************//**
@@ -82,8 +83,11 @@ void hal_entry(void)
     err = R_ICU_ExternalIrqOpen(&g_external_irq_ctrl, &g_external_irq_cfg);
     /* Handle error */
     handle_error(err, "** ICU ExternalIrqOpen API failed ** \r\n");
-
+#if !defined(RTE_CMSIS_RTOS2)
     init_cycle_counter(false);
+#else
+    init_cycle_counter(true);
+#endif
 
     /* Start display 8-color bars */
     mipi_dsi_start_display();
