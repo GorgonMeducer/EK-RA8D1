@@ -54,10 +54,10 @@ typedef void (* exc_ptr_t)(void);
  **********************************************************************************************************************/
 void    Reset_Handler(void);
 void    Default_Handler(void);
-int32_t main(void);
-void __main(void);
 
 #if defined(__MICROLIB)
+extern
+void __main_after_scatterload(void);
 #else
 extern
 void __rt_entry(void);
@@ -84,9 +84,9 @@ void Reset_Handler (void)
     */
 
     SCB_EnableDCache();
-    //__main();
+
 #if defined(__MICROLIB)
-    
+    __main_after_scatterload();
 #else
     __rt_entry();
 #endif
