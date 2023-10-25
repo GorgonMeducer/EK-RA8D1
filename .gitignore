@@ -60,3 +60,5 @@ RTE_Components.h
 Objects/*
 JLinkLog.txt
 Pre_Include_Global.h
+RTE/Device/R7FA8D1BH/startup_RA.c
+RTE/Device/R7FA8D1BH/system_RA.c
