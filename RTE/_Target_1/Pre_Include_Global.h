@@ -14,9 +14,6 @@
 #define ___ARM_2D_CFG_SKIP_HEADER___
 /* GorgonMeducer::Utilities:perf_counter:Core:Source:2.2.3 */
 #define __PERF_COUNTER_CFG_USE_SYSTICK_WRAPPER__ 1
-/* GorgonMeducer::Utilities:perf_counter:RTX5 Patch:2.2.3 */
-//! \brief Enable RTOS Patch for perf_counter
-#define __PERF_CNT_USE_RTOS__ 1
 
 
 #endif /* PRE_INCLUDE_GLOBAL_H */

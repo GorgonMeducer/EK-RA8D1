@@ -278,7 +278,7 @@ void Disp0_DrawBitmap (uint32_t x, uint32_t y, uint32_t width, uint32_t height, 
     uint32_t *pwSrc = (uint32_t *)bitmap;
     for (int_fast16_t i = 0; i < height; i++) {
         memcpy ((uint32_t *)pwDes, pwSrc, width * 4);
-        SCB_CleanDCache_by_Addr(pwDes, width * 4);
+        //SCB_CleanDCache_by_Addr(pwDes, width * 4);
         pwSrc += width;
         pwDes += g_hz_size;
     }
@@ -359,6 +359,122 @@ bool __disp_adapter0_request_2d_copy(   arm_2d_helper_3fb_t *ptThis,
 
 #endif
 
+#include "demos/arm_2d_scene_meter.h"
+#include "demos/arm_2d_scene_watch.h"
+#include "demos/arm_2d_scene_fitness.h"
+#include "demos/arm_2d_scene_audiomark.h"
+
+
+
+void scene_meter_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_RIGHT);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
+    arm_2d_scene_meter_init(&DISP0_ADAPTER);
+}
+
+void scene_watch_loader(void) 
+{
+    arm_2d_scene_watch_init(&DISP0_ADAPTER);
+}
+
+void scene_fitness_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_LEFT);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
+    arm_2d_scene_fitness_init(&DISP0_ADAPTER);
+}
+
+void scene_audiomark_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_ERASE_DOWN);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 2000);
+    arm_2d_scene_audiomark_init(&DISP0_ADAPTER);
+}
+
+void scene0_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_FADE_WHITE);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 3000);
+
+    arm_2d_scene0_init(&DISP0_ADAPTER);
+}
+
+void scene1_loader(void) 
+{
+    arm_2d_scene1_init(&DISP0_ADAPTER);
+}
+
+void scene2_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_UP);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 4000);
+    arm_2d_scene2_init(&DISP0_ADAPTER);
+}
+
+void scene3_loader(void) 
+{
+    arm_2d_scene3_init(&DISP0_ADAPTER);
+}
+
+void scene4_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_RIGHT);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
+    arm_2d_scene4_init(&DISP0_ADAPTER);
+}
+
+void scene5_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_FADE_BLACK);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 3000);
+    arm_2d_scene5_init(&DISP0_ADAPTER);
+}
+
+
+typedef void scene_loader_t(void);
+
+static scene_loader_t * const c_SceneLoaders[] = {
+    scene0_loader,
+    scene1_loader,
+    scene_meter_loader,
+    //scene3_loader,
+    scene5_loader,
+    scene4_loader,
+    //scene2_loader,
+    scene_fitness_loader,
+
+    scene_audiomark_loader,
+};
+
+
+/* load scene one by one */
+void before_scene_switching_handler(void *pTarget,
+                                    arm_2d_scene_player_t *ptPlayer,
+                                    arm_2d_scene_t *ptScene)
+{
+    static uint_fast8_t s_chIndex = 0;
+
+    if (s_chIndex >= dimof(c_SceneLoaders)) {
+        s_chIndex = 0;
+    }
+    
+    /* call loader */
+    c_SceneLoaders[s_chIndex]();
+    s_chIndex++;
+}
+
+
+
+
+
 /*******************************************************************************************************************//**
  * @brief      Start video mode and draw color bands on the LCD screen
  *
@@ -429,13 +545,11 @@ void mipi_dsi_start_display(void)
 #ifdef RTE_Acceleration_Arm_2D_Extra_Benchmark
     arm_2d_run_benchmark();
 #else
-    //arm_2d_scene0_init(&DISP0_ADAPTER);
-        
-    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
-                                            ARM_2D_SCENE_SWITCH_MODE_FADE_WHITE);
-    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 3000);
+    arm_2d_scene_player_register_before_switching_event_handler(
+            &DISP0_ADAPTER,
+            before_scene_switching_handler);
     
-    //arm_2d_scene_player_switch_to_next_scene(&DISP0_ADAPTER);
+    arm_2d_scene_player_switch_to_next_scene(&DISP0_ADAPTER);
 #endif
 
     
@@ -505,8 +619,24 @@ void mipi_dsi_start_display(void)
         }
     }
 #else
-    while(true) {
-        while(arm_fsm_rt_cpl != disp_adapter0_task()) __NOP();
+
+#ifndef LCD_TARGET_FPS
+#   define LCD_TARGET_FPS       60
+#endif
+
+    bool bRefreshLCD = false;
+    while (1) {
+    
+        /* lock framerate */
+        if (arm_2d_helper_is_time_out(1000 / LCD_TARGET_FPS)) {
+            bRefreshLCD = true;
+        }
+        
+        if (bRefreshLCD) {
+            if (arm_fsm_rt_cpl == disp_adapter0_task()) {
+                bRefreshLCD = false;
+            }
+        }
     }
 #endif
 #else
