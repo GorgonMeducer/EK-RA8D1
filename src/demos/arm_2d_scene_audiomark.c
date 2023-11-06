@@ -110,6 +110,10 @@ extern const arm_2d_tile_t c_tileInnerGearMask;
 extern const arm_2d_tile_t c_tileInnerGearMidMask;
 extern const arm_2d_tile_t c_tileGenshinPointerMask;
 
+extern const arm_2d_tile_t c_tileBigWhiteDotMask;
+extern const arm_2d_tile_t c_tileQuaterArcBigMask;
+
+
 /*============================ PROTOTYPES ====================================*/
 /*============================ LOCAL VARIABLES ===============================*/
 
@@ -359,7 +363,7 @@ IMPL_PFB_ON_DRAW(__pfb_draw_scene_audiomark_handler)
 
 
                     arm_lcd_text_set_colour(GLCD_COLOR_WHITE, GLCD_COLOR_WHITE);
-                    arm_lcd_print_banner("AudioMark", __item_region, &ARM_2D_FONT_ARIAL32_A4);
+                    arm_lcd_print_banner("Animated Benchmark: AudioMark", __item_region, &ARM_2D_FONT_ARIAL20_A4);
 
                     arm_2d_align_bottom_right(__item_region, 300, 70) {
                         arm_lcd_text_set_target_framebuffer(NULL);
@@ -445,11 +449,8 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
     /*! define dirty regions */
     IMPL_ARM_2D_REGION_LIST(s_tDirtyRegions, static)
 
-        /* add the last region:
-         * it is the top left corner for text display 
-         */
         ADD_LAST_REGION_TO_LIST(s_tDirtyRegions,
-           0
+            0
         ),
 
     END_IMPL_ARM_2D_REGION_LIST(s_tDirtyRegions)
@@ -465,10 +466,11 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
      * this demo shows that we create a region in the centre of a screen(320*240)
      * for a image stored in the tile c_tileCMSISLogoMask
      */
-    arm_2d_align_bottom_centre(tScreen, 415, 415) {
-        s_tDirtyRegions[0].tRegion = __bottom_centre_region;
-    }
-
+    arm_2d_align_bottom_centre(tScreen, tScreen.tSize.iWidth, tScreen.tSize.iHeight >> 1) {
+        arm_2d_align_centre(__bottom_centre_region, 415, 415) {
+            s_tDirtyRegions[0].tRegion = __centre_region;
+        }
+    } 
 #endif
 
     if (NULL == ptThis) {
@@ -504,9 +506,33 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
     /* ------------   initialize members of user_scene_audiomark_t begin ---------------*/
 
     for (uint_fast8_t n = 0; n < dimof(this.Processor); n++) {
-        progress_wheel_init(&this.Processor[n].tWheel, 
+
+        switch (n) {
+            case AUDIOMARK_CORTEX_M4:
+            case AUDIOMARK_CORTEX_M33:
+            case AUDIOMARK_CORTEX_M7:
+                progress_wheel_init(&this.Processor[n].tWheel, 
                             c_tProcessorInfo[n].iWheelSize, 
-                            c_tProcessorInfo[n].tColour);
+                            c_tProcessorInfo[n].tColour,
+                            GLCD_COLOR_WHITE,
+                            NULL);
+                break;
+            case AUDIOMARK_CORTEX_M55_HELIUM:
+            case AUDIOMARK_CORTEX_M85_SCALER:
+            case AUDIOMARK_CORTEX_M85_HELIUM:
+                progress_wheel_init(&this.Processor[n].tWheel, 
+                    c_tProcessorInfo[n].iWheelSize, 
+                    c_tProcessorInfo[n].tColour,
+                    GLCD_COLOR_WHITE,
+                    &c_tileQuaterArcBigMask,
+                    &c_tileBigWhiteDotMask,
+                    NULL);
+                break;
+            default:
+                assert(false);
+                break;
+        }
+
         this.Processor[n].pchName = c_tProcessorInfo[n].pchName;
         this.Processor[n].iProgress = 0;
     }
