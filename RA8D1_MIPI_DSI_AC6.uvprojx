@@ -474,6 +474,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\demos\BigWhiteDot.c</FilePath>
             </File>
+            <File>
+              <FileName>navigation.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\demos\navigation.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
