@@ -75,7 +75,8 @@ void Reset_Handler (void)
     __set_MSP(RAM_START + RAM_LENGTH);      /* make it possible to use stack safely */
     
     memset((uint64_t *)DTCM_START, 0, DTCM_LENGTH);
-
+    memset((uint64_t *)ITCM_START, 0, ITCM_LENGTH);
+    
     __set_MSP(uMSP);
     
     /* Initialize system using BSP. */
@@ -83,7 +84,7 @@ void Reset_Handler (void)
 
     /*
     SystemInit()
-       - Before Scatter loading
+       - Before Scatter loadingzhe
        
     __main()
        - Scatter loading
