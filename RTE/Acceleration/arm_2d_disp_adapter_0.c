@@ -205,7 +205,7 @@ IMPL_PFB_ON_DRAW(__disp_adapter0_draw_navigation)
 
 #if __DISP0_CFG_ENABLE_3FB_HELPER_SERVICE__
 __WEAK
-IMPL_PFB_ON_LOW_LV_RENDERING(__glcd0_pfb_render_handler)
+IMPL_PFB_ON_LOW_LV_RENDERING(__disp_adapter0_pfb_render_handler)
 {
     const arm_2d_tile_t *ptTile = &(ptPFB->tTile);
 
