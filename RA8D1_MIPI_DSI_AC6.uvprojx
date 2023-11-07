@@ -340,7 +340,7 @@
               <MiscControls>-Wno-implicit-int-conversion -Wno-format-security -Wno-license-management -Omax</MiscControls>
               <Define>ITERATIONS=30000,CMSIS_device_header=\"bsp_api.h\"</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src\SEGGER_RTT;.\ra\fsp\src\bsp\cmsis\Device\RENESAS\Include;.\src</IncludePath>
+              <IncludePath>.\src\SEGGER_RTT;.\ra\fsp\src\bsp\cmsis\Device\RENESAS\Include;.\src;.</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -653,46 +653,6 @@
   </Targets>
 
   <RTE>
-    <packages>
-      <filter>
-        <targetInfos/>
-      </filter>
-      <package name="Arm-2D" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9">
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
-      </package>
-      <package name="CMSIS-DSP" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="1.15.0">
-        <targetInfos>
-          <targetInfo name="Target 1" versionMatchMode="fixed"/>
-        </targetInfos>
-      </package>
-      <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0">
-        <targetInfos>
-          <targetInfo name="Target 1" versionMatchMode="fixed"/>
-        </targetInfos>
-      </package>
-      <package name="perf_counter" schemaVersion="1.7.7" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="2.2.4">
-        <targetInfos>
-          <targetInfo name="Target 1" versionMatchMode="fixed"/>
-        </targetInfos>
-      </package>
-      <package name="ARM_Compiler" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.7.2">
-        <targetInfos>
-          <targetInfo name="Target 1" versionMatchMode="fixed"/>
-        </targetInfos>
-      </package>
-      <package name="lvgl" schemaVersion="1.4" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="8.3.10">
-        <targetInfos>
-          <targetInfo name="Target 1" versionMatchMode="fixed"/>
-        </targetInfos>
-      </package>
-      <package name="RA8_DFP" schemaVersion="1.7.2" url="https://www2.renesas.eu/Keil_MDK_Packs/" vendor="Renesas" version="0.0.2-dev1">
-        <targetInfos>
-          <targetInfo name="Target 1" versionMatchMode="fixed"/>
-        </targetInfos>
-      </package>
-    </packages>
     <gpdscs>
       <gpdsc name="buildinfo.gpdsc">
         <targetInfos>

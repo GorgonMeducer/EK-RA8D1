@@ -66,8 +66,18 @@ void __rt_entry(void);
 /*******************************************************************************************************************//**
  * MCU starts executing here out of reset. Main stack pointer is set up already.
  **********************************************************************************************************************/
+__NO_RETURN
 void Reset_Handler (void)
 {
+
+#include "memory_regions.scat"
+    register uint32_t uMSP = __get_MSP();
+    __set_MSP(RAM_START + RAM_LENGTH);      /* make it possible to use stack safely */
+    
+    memset((uint64_t *)DTCM_START, 0, DTCM_LENGTH);
+
+    __set_MSP(uMSP);
+    
     /* Initialize system using BSP. */
     SystemInit();
 
