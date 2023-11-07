@@ -74,6 +74,7 @@ void Reset_Handler (void)
     register uint32_t uMSP = __get_MSP();
     __set_MSP(RAM_START + RAM_LENGTH);      /* make it possible to use stack safely */
     
+    /* initialize DTCM and ITCM to a known status */
     memset((uint64_t *)DTCM_START, 0, DTCM_LENGTH);
     memset((uint64_t *)ITCM_START, 0, ITCM_LENGTH);
     
