@@ -5,6 +5,8 @@
             extern "C" {
             #endif
 
+            #define BSP_CFG_HANDLE_UNRECOVERABLE_ERROR(x)
+
             #include "bsp_clock_cfg.h"
             #include "bsp_mcu_family_cfg.h"
             #include "board_cfg.h"
