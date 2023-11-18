@@ -91,6 +91,7 @@ extern "C" {
 // <i> Make sure the x and width of the PFB is always aligned to 2^n pixels
 #ifndef __DISP0_CFG_PFB_PIXEL_ALIGN_WIDTH__
 #   define __DISP0_CFG_PFB_PIXEL_ALIGN_WIDTH__                     1
+#   define __DISP0_CFG_PFB_PIXEL_ALIGN_WIDTH__                     0
 #endif
 
 // <o>Height Alignment of generated PFBs
@@ -131,6 +132,18 @@ extern "C" {
 // <i> Draw dirty regions on the screen for debug.
 #ifndef __DISP0_CFG_DEBUG_DIRTY_REGIONS__
 #   define __DISP0_CFG_DEBUG_DIRTY_REGIONS__                       0
+#endif
+
+// <q> Enable Dirty Region Optimization Service
+// <i> Optimize dirty regions to avoid fresh overlapped areas
+#ifndef __DISP0_CFG_OPTIMIZE_DIRTY_REGIONS__
+#   define __DISP0_CFG_OPTIMIZE_DIRTY_REGIONS__                    1
+#endif
+
+// <o> Dirty Region Pool Size <4-255>
+// <i> The number of dirty region items available for the dirty region optimization service
+#ifndef __DISP0_CFG_DIRTY_REGION_POOL_SIZE__
+#   define __DISP0_CFG_DIRTY_REGION_POOL_SIZE__                    8
 #endif
 
 // <q> Swap the high and low bytes
