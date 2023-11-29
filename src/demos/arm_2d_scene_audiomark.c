@@ -490,7 +490,7 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
             /* Please uncommon the callbacks if you need them
              */
             .fnScene        = &__pfb_draw_scene_audiomark_handler,
-            //.ptDirtyRegion  = (arm_2d_region_list_item_t *)s_tDirtyRegions,
+            .ptDirtyRegion  = (arm_2d_region_list_item_t *)s_tDirtyRegions,
             
 
             //.fnOnBGStart    = &__on_scene_audiomark_background_start,
@@ -514,8 +514,8 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
                 progress_wheel_init(&this.Processor[n].tWheel, 
                             c_tProcessorInfo[n].iWheelSize, 
                             c_tProcessorInfo[n].tColour,
-                            GLCD_COLOR_WHITE,
-                            &this.use_as__arm_2d_scene_t.ptDirtyRegion);
+                            GLCD_COLOR_WHITE, NULL);
+                            //&this.use_as__arm_2d_scene_t.ptDirtyRegion);
                 break;
             case AUDIOMARK_CORTEX_M55_HELIUM:
             case AUDIOMARK_CORTEX_M85_SCALER:
@@ -525,8 +525,8 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
                     c_tProcessorInfo[n].tColour,
                     GLCD_COLOR_WHITE,
                     &c_tileQuaterArcBigMask,
-                    &c_tileBigWhiteDotMask,
-                    &this.use_as__arm_2d_scene_t.ptDirtyRegion);
+                    &c_tileBigWhiteDotMask, NULL);
+                    //&this.use_as__arm_2d_scene_t.ptDirtyRegion);
                 break;
             default:
                 assert(false);
