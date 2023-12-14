@@ -52,7 +52,87 @@ Congratulations!
 
 
 
+### How to Run Arm-2D Demos
+
+1. Right click the group `demos` in project view (as shown below):
+
+![OptionsForGroupDemos](./document/picture/OptionsForGroupDemos.png) 
 
 
 
+Select `Options for Group demos `. Ensure the option  `Include in Target Build` is selected.
+
+![UnselectIncludeInTargetBuild](./document/picture/UnselectIncludeInTargetBuild.png) 
+
+2. Open `Manage Run-Time Environment` window in menu.
+
+![AddArm2DInRTE](./document/picture/AddArm2DInRTE.png) 
+
+Expand `Arm-2D Helper` and set the `Display Adapter` to `1` and set the `Scene` to `6` (as we have 6 pre-built scenes for demonstration). Before close the window, press `Resolve` button to resolve warnings in yellow.
+
+3. Compile and debug. 
+
+
+
+### How to Run Coremark
+
+1. Right click the group `demos` in project view (as shown below):
+
+![OptionsForGroupDemos](./document/picture/OptionsForGroupDemos.png) 
+
+
+
+Select `Options for Group demos `. Ensure the option  `Include in Target Build` is unselected.
+
+![UnselectIncludeInTargetBuild](./document/picture/UnselectIncludeInTargetBuild.png) 
+
+2. Open `Manage Run-Time Environment` window in menu. Expand `Arm-2D`,`Arm-2D Extras` and ` Arm-2D Helper`. Unselect all components,  set the `Display Adapter` to 0 and set the `Scene` to `0` as shown below:
+
+![UnselectArm2DInRTE](./document/picture/UnselectArm2DInRTE.png) 
+
+Expand `Utilities::perf_counter` , select both `Benchmark::Coremark` and `Core::Source`. Click OK to close the window.
+
+![SelectCoreMarkInRTE](./document/picture/SelectCoremarkInRTE.png)
+
+3. Compile and debug.  You can find the coremark report in `Debug (printf) View` after entering the debug mode. 
+
+
+
+## FAQ
+
+- ### Where is the `main()` function?
+
+The ordinary `main()` is hidden in this project, instead, using the `hal_entry()` is suggested by Renesas. In this project, all user code is placed in function `mipi_dsi_start_display()`.
+
+- ### How to place data and/or code to TCMs?
+
+  - Placing data to DTCM
+
+    You can place variables to DTCM by applying the `__attribute__((section(".dtcm_data")))`. For data with different attributes, e.g. RO, RW or ZI, you can use the following attributes:
+
+    ```c
+    __attribute__((section(".dtcm_data.ro")))
+    const char example_string[]={"hello world\r\n"};
+    
+    __attribute__((section(".dtcm_data.rw")))
+    int32_t example_look_up_table[] = {2,3,5,7,11,13,17,19};
+    
+    __attribute__((section(".dtcm_data.zi")))
+    uint8_t example_buffer[512];
+    ```
+
+    or some unique section name with the pattern `.dtcm_data.xxxx`. 
+
+  - Placing code to ITCM
+
+    You can place code to ITCM by applying the  `__attribute__((section(".itcm_data")))` before the function. 
+
+    **NOTE: STACK and HEAP have already been placed at DTCM.**
+
+- ### How to Change STACK and HEAP size?
+
+    Open the header file `bsp_cfg.h` and 
+
+    - modify the macro `BSP_CFG_STACK_MAIN_BYTES` to adjust the stack size.
+    - modify the macro `BSP_CFG_HEAP_BYTES` to adjust the heap size.
 
