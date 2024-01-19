@@ -64,4 +64,6 @@ RTE/Device/R7FA8D1BH/startup_RA.c
 RTE/Device/R7FA8D1BH/system_RA.c
 *.ttf
 JLinkLog.txt
-RTE/_Target_1/RTE_Components.h
+RTE_Components.h
+Pre_Include_Global.h
+*.uvguix.*

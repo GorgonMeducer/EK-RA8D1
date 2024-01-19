@@ -359,10 +359,11 @@ bool __disp_adapter0_request_2d_copy(   arm_2d_helper_3fb_t *ptThis,
 
 #endif
 
-#include "demos/arm_2d_scene_meter.h"
-#include "demos/arm_2d_scene_watch.h"
-#include "demos/arm_2d_scene_fitness.h"
-#include "demos/arm_2d_scene_audiomark.h"
+#if defined(RTE_Acceleration_Arm_2D)
+#   include "demos/arm_2d_scene_meter.h"
+#   include "demos/arm_2d_scene_watch.h"
+#   include "demos/arm_2d_scene_fitness.h"
+#   include "demos/arm_2d_scene_audiomark.h"
 
 
 
@@ -485,7 +486,7 @@ void before_scene_switching_handler(void *pTarget,
 }
 
 
-
+#endif
 
 
 /*******************************************************************************************************************//**
@@ -548,6 +549,8 @@ void mipi_dsi_start_display(void)
         while (g_vsync_flag);
     }
 
+    printf("EK-RA8D1 Template.\r\n");
+    
 #if defined(RTE_Acceleration_Arm_2D)
     printf("Arm-2D running on RA8D1\r\n");
     
@@ -653,8 +656,11 @@ void mipi_dsi_start_display(void)
     }
 #endif
 #else
+
+#if defined(__PERF_COUNTER_COREMARK__)
     printf("\r\n Run Coremark...\r\n");
     coremark_main();
+#endif
     
     while(1) {
         
