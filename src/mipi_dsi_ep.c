@@ -47,6 +47,14 @@
 #   include <EventRecorder.h>
 #endif
 
+#if defined(RTE_GRAPHICS_LVGL)
+#   include "lvgl.h"
+#   include "demos/lv_demos.h"
+
+#   include "lv_port_disp_template.h"
+#   include "lv_port_indev_template.h"
+#endif
+
 /*******************************************************************************************************************//**
  * @addtogroup mipi_dsi_ep
  * @{
@@ -550,8 +558,32 @@ void mipi_dsi_start_display(void)
     }
 
     printf("EK-RA8D1 Template.\r\n");
+#if defined(RTE_GRAPHICS_LVGL)
+    /* LVGL Demo */
+
+    lv_init();
+    lv_port_disp_init();
+    //lv_port_indev_init();
+
+
+#if LV_USE_DEMO_BENCHMARK
+
+    lv_demo_benchmark();
     
-#if defined(RTE_Acceleration_Arm_2D)
+    //lv_demo_benchmark_run_scene(LV_DEMO_BENCHMARK_MODE_RENDER_AND_DRIVER, 26*2-1);      // run scene no 31
+#elif LV_USE_DEMO_RENDER
+    lv_demo_render(LV_DEMO_RENDER_SCENE_IMAGE_NORMAL, 128);
+#elif LV_USE_DEMO_WIDGETS
+    lv_demo_widgets();
+#elif LV_USE_DEMO_MUSIC
+    lv_demo_music();
+#endif
+
+    while(1) {
+        lv_timer_handler();
+    }
+
+#elif defined(RTE_Acceleration_Arm_2D)
     printf("Arm-2D running on RA8D1\r\n");
     
     arm_2d_init();

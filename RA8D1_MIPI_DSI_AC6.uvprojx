@@ -10,13 +10,13 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6200001::V6.20.1::.\ArmCompiler6.20.1</pCCUsed>
+      <pCCUsed>6210000::V6.21::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>R7FA8D1BH</Device>
           <Vendor>Renesas</Vendor>
-          <PackID>Renesas.RA_DFP.5.1.0</PackID>
+          <PackID>Renesas.RA8_DFP.0.0.2-dev1</PackID>
           <PackURL>https://www2.renesas.eu/Keil_MDK_Packs/</PackURL>
           <Cpu>CPUTYPE("Cortex-M85") DSP TZ MVE(FP) FPU3(DFPU) PACBTI CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -651,6 +651,9 @@
           <GroupName>::Flex Software</GroupName>
         </Group>
         <Group>
+          <GroupName>::LVGL</GroupName>
+        </Group>
+        <Group>
           <GroupName>::Utilities</GroupName>
         </Group>
       </Groups>
@@ -679,7 +682,7 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Display Adapter" Cvendor="ARM" Cversion="1.8.3" condition="Arm-2D-Helper" maxInstances="8">
+      <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Display Adapter" Cvendor="ARM" Cversion="1.9.1" condition="Arm-2D-Helper" maxInstances="8">
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -691,7 +694,7 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000">
+      <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000">
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo instances="6" name="Target 1"/>
@@ -715,8 +718,8 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.6.0" condition="ARMv6_7_8-M Device">
-        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="6.0.0" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="6.0.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
@@ -727,14 +730,14 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Utilities" Cgroup="perf_counter" Csub="Benchmark" Cvariant="Coremark" Cvendor="GorgonMeducer" Cversion="1.1.1" condition="perf_counter">
-        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="2.2.4"/>
+      <component Cclass="Utilities" Cgroup="perf_counter" Csub="Benchmark" Cvariant="Coremark" Cvendor="GorgonMeducer" Cversion="1.1.2" condition="perf_counter">
+        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Utilities" Cgroup="perf_counter" Csub="Core" Cvariant="Source" Cvendor="GorgonMeducer" Cversion="2.2.3" condition="CMSIS-CORE">
-        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="2.2.4"/>
+      <component Cclass="Utilities" Cgroup="perf_counter" Csub="Core" Cvariant="Source" Cvendor="GorgonMeducer" Cversion="2.3.0" condition="CMSIS-CORE">
+        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
@@ -747,6 +750,36 @@
       </component>
       <component Cbundle="ARM Compiler" Cclass="Compiler" Cgroup="I/O" Csub="STDOUT" Cvariant="EVR" Cvendor="Keil" Cversion="1.2.0" condition="ARMCC Cortex-M with EVR">
         <package name="ARM_Compiler" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.7.2"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Demos" Csub="Assets" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Demos" Csub="Benchmark" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential-Assets">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Demos" Csub="Widgets" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential-Assets">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Essential" Cvendor="LVGL" Cversion="9.0.0">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
@@ -791,7 +824,7 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </file>
-      <file attr="config" category="preIncludeGlobal" name="Library\Include\template\arm_2d_cfg.h" version="1.3.0">
+      <file attr="config" category="preIncludeGlobal" name="Library\Include\template\arm_2d_cfg.h" version="1.3.1">
         <instance index="0">RTE\Acceleration\arm_2d_cfg.h</instance>
         <component Cclass="Acceleration" Cgroup="Arm-2D" Csub="Core" Cvendor="ARM" Cversion="1.1.5" condition="CMSIS-DSP"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
@@ -799,17 +832,17 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </file>
-      <file attr="config" category="sourceC" name="Helper\Source\template\arm_2d_disp_adapter.c" version="1.8.3">
+      <file attr="config" category="sourceC" name="Helper\Source\template\arm_2d_disp_adapter.c" version="1.9.1">
         <instance index="0">RTE\Acceleration\arm_2d_disp_adapter_0.c</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Display Adapter" Cvendor="ARM" Cversion="1.8.3" condition="Arm-2D-Helper" maxInstances="8"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Display Adapter" Cvendor="ARM" Cversion="1.9.1" condition="Arm-2D-Helper" maxInstances="8"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" name="Helper\Include\template\arm_2d_disp_adapter.h" version="1.8.3">
+      <file attr="config" category="header" name="Helper\Include\template\arm_2d_disp_adapter.h" version="1.9.1">
         <instance index="0">RTE\Acceleration\arm_2d_disp_adapter_0.h</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Display Adapter" Cvendor="ARM" Cversion="1.8.3" condition="Arm-2D-Helper" maxInstances="8"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Display Adapter" Cvendor="ARM" Cversion="1.9.1" condition="Arm-2D-Helper" maxInstances="8"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -883,7 +916,7 @@
       </file>
       <file attr="config" category="sourceC" name="Helper\Source\template\arm_2d_scene.c" version="1.1.10">
         <instance index="0">RTE\Acceleration\arm_2d_scene_0.c</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -891,7 +924,7 @@
       </file>
       <file attr="config" category="header" name="Helper\Include\template\arm_2d_scene.h" version="1.1.10">
         <instance index="0">RTE\Acceleration\arm_2d_scene_0.h</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -899,7 +932,7 @@
       </file>
       <file attr="config" category="sourceC" name="Helper\Source\template\arm_2d_scene.c" version="0.0.0">
         <instance index="1">RTE\Acceleration\arm_2d_scene_1.c</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -907,7 +940,7 @@
       </file>
       <file attr="config" category="header" name="Helper\Include\template\arm_2d_scene.h" version="0.0.0">
         <instance index="1">RTE\Acceleration\arm_2d_scene_1.h</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -915,7 +948,7 @@
       </file>
       <file attr="config" category="sourceC" name="Helper\Source\template\arm_2d_scene.c" version="0.0.0">
         <instance index="2">RTE\Acceleration\arm_2d_scene_2.c</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -923,7 +956,7 @@
       </file>
       <file attr="config" category="header" name="Helper\Include\template\arm_2d_scene.h" version="0.0.0">
         <instance index="2">RTE\Acceleration\arm_2d_scene_2.h</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -931,7 +964,7 @@
       </file>
       <file attr="config" category="sourceC" name="Helper\Source\template\arm_2d_scene.c" version="0.0.0">
         <instance index="3">RTE\Acceleration\arm_2d_scene_3.c</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -939,7 +972,7 @@
       </file>
       <file attr="config" category="header" name="Helper\Include\template\arm_2d_scene.h" version="0.0.0">
         <instance index="3">RTE\Acceleration\arm_2d_scene_3.h</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -947,7 +980,7 @@
       </file>
       <file attr="config" category="sourceC" name="Helper\Source\template\arm_2d_scene.c" version="0.0.0">
         <instance index="4">RTE\Acceleration\arm_2d_scene_4.c</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -955,7 +988,7 @@
       </file>
       <file attr="config" category="header" name="Helper\Include\template\arm_2d_scene.h" version="0.0.0">
         <instance index="4">RTE\Acceleration\arm_2d_scene_4.h</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -963,7 +996,7 @@
       </file>
       <file attr="config" category="sourceC" name="Helper\Source\template\arm_2d_scene.c" version="0.0.0">
         <instance index="5">RTE\Acceleration\arm_2d_scene_5.c</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -971,7 +1004,7 @@
       </file>
       <file attr="config" category="header" name="Helper\Include\template\arm_2d_scene.h" version="0.0.0">
         <instance index="5">RTE\Acceleration\arm_2d_scene_5.h</instance>
-        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.1" condition="Arm-2D-Helper" maxInstances="1000"/>
+        <component Cclass="Acceleration" Cgroup="Arm-2D Helper" Csub="Scene" Cvendor="ARM" Cversion="1.2.2" condition="Arm-2D-Helper" maxInstances="1000"/>
         <package name="Arm-2D" schemaVersion="1.7.28" url="https://www.keil.com/pack/" vendor="ARM" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
@@ -1025,18 +1058,74 @@
         <package name="RA8_DFP" schemaVersion="1.7.2" url="https://www2.renesas.eu/Keil_MDK_Packs/" vendor="Renesas" version="0.0.2-dev1"/>
         <targetInfos/>
       </file>
-      <file attr="config" category="sourceC" name="benchmark\coremark_port\core_portme.c" version="1.1.0">
-        <instance index="0">RTE\Utilities\core_portme.c</instance>
-        <component Cclass="Utilities" Cgroup="perf_counter" Csub="Benchmark" Cvariant="Coremark" Cvendor="GorgonMeducer" Cversion="1.1.1" condition="perf_counter"/>
-        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="2.2.4"/>
+      <file attr="config" category="preIncludeGlobal" name="lv_conf_cmsis.h" version="2.1.3">
+        <instance index="0">RTE\LVGL\lv_conf_cmsis.h</instance>
+        <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Essential" Cvendor="LVGL" Cversion="9.0.0"/>
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" name="benchmark\coremark_port\core_portme.h" version="1.1.1">
+      <file attr="config" category="sourceC" name="examples\porting\lv_port_disp_template.c" version="2.1.0">
+        <instance index="0">RTE\LVGL\lv_port_disp_template.c</instance>
+        <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential"/>
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="examples\porting\lv_port_disp_template.h" version="2.1.0">
+        <instance index="0">RTE\LVGL\lv_port_disp_template.h</instance>
+        <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential"/>
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="sourceC" name="examples\porting\lv_port_fs_template.c" version="2.1.0">
+        <instance index="0">RTE\LVGL\lv_port_fs_template.c</instance>
+        <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential"/>
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="examples\porting\lv_port_fs_template.h" version="2.1.0">
+        <instance index="0">RTE\LVGL\lv_port_fs_template.h</instance>
+        <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential"/>
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="sourceC" name="examples\porting\lv_port_indev_template.c" version="2.1.0">
+        <instance index="0">RTE\LVGL\lv_port_indev_template.c</instance>
+        <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential"/>
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="examples\porting\lv_port_indev_template.h" version="2.1.0">
+        <instance index="0">RTE\LVGL\lv_port_indev_template.h</instance>
+        <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.0" condition="LVGL-Essential"/>
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="sourceC" name="benchmark\coremark_port\core_portme.c" version="1.1.2">
+        <instance index="0">RTE\Utilities\core_portme.c</instance>
+        <component Cclass="Utilities" Cgroup="perf_counter" Csub="Benchmark" Cvariant="Coremark" Cvendor="GorgonMeducer" Cversion="1.1.2" condition="perf_counter"/>
+        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="9.9.9"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="benchmark\coremark_port\core_portme.h" version="1.1.2">
         <instance index="0">RTE\Utilities\core_portme.h</instance>
-        <component Cclass="Utilities" Cgroup="perf_counter" Csub="Benchmark" Cvariant="Coremark" Cvendor="GorgonMeducer" Cversion="1.1.1" condition="perf_counter"/>
-        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="2.2.4"/>
+        <component Cclass="Utilities" Cgroup="perf_counter" Csub="Benchmark" Cvariant="Coremark" Cvendor="GorgonMeducer" Cversion="1.1.2" condition="perf_counter"/>
+        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="9.9.9"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
