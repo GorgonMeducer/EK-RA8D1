@@ -17,6 +17,7 @@
 
 #   if defined(__RTE_ACCELERATION_ARM_2D__)
 #       include "arm_2d.h"
+#       include "__arm_2d_impl.h"
 #   endif
 #endif
 
@@ -111,14 +112,15 @@ static void disp_flush(lv_display_t * disp_drv, const lv_area_t * area, uint8_t 
 
     if (disp_flush_enabled) {
 
+        int32_t stride = 0, width = 0, height = 0;
         do {
             lv_color_format_t color_format = lv_display_get_color_format(disp_drv);
-            int32_t width = area->x2 - area->x1 + 1;
-            int32_t height = area->y2 - area->y1 + 1;
-            int32_t stride = lv_draw_buf_width_to_stride( width, color_format);
-            width *= lv_color_format_get_bpp(color_format) >> 3;
+            width = area->x2 - area->x1 + 1;
+            height = area->y2 - area->y1 + 1;
+            stride = lv_draw_buf_width_to_stride( width, color_format);
+            int32_t stride_from_width = width * (lv_color_format_get_bpp(color_format) >> 3);
             
-            if (width == stride) {
+            if (stride == stride_from_width) {
                 break;
             }
             
@@ -126,17 +128,35 @@ static void disp_flush(lv_display_t * disp_drv, const lv_area_t * area, uint8_t 
             uint8_t *des_ptr = px_map;
              
             for (int y = 0; y < height; y++) {
-                lv_memcpy(des_ptr, src_ptr, width);
+                lv_memcpy(des_ptr, src_ptr, stride_from_width);
                 
                 src_ptr += stride;
-                des_ptr += width;
+                des_ptr += stride_from_width;
             }
         } while(0);
 
+    #if defined(__RTE_ACCELERATION_ARM_2D__)
+        if (LV_COLOR_DEPTH == 16) {
+            /* we need a color format conversion */
+            static uint32_t buf_32[MY_DISP_HOR_RES * MY_DISP_VER_RES / 5];
+            
+            __arm_2d_impl_rgb565_to_cccn888(
+                (uint16_t *)px_map,
+                width,//stride / sizeof(uint16_t),
+                buf_32,
+                width,
+                (arm_2d_size_t []){{
+                    width, height
+                }});
+            
+            px_map = (uint8_t *)buf_32;
+        }
+    #endif
+
         Disp0_DrawBitmap(area->x1,               //!< x
                          area->y1,               //!< y
-                         area->x2 - area->x1 + 1,    //!< width
-                         area->y2 - area->y1 + 1,    //!< height
+                         width,    //!< width
+                         height,    //!< height
                          (const uint8_t *)px_map);
 
     }
