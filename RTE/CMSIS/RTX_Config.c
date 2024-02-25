@@ -27,12 +27,25 @@
  
 #include "cmsis_compiler.h"
 #include "rtx_os.h"
+#include <stdio.h>
+
+#if defined(__PERF_COUNTER__) && __PERF_COUNTER__
+#   include "perf_counter.h"
+#endif
  
 // OS Idle Thread
 __WEAK __NO_RETURN void osRtxIdleThread (void *argument) {
   (void)argument;
+    
+#if defined(__PERF_COUNTER__) && __PERF_COUNTER__
+    init_task_cycle_counter();
+    
+    __super_loop_monitor__(15) {
+        __NOP();
+    }
+#endif
 
-  for (;;) {}
+    for (;;) {}
 }
  
 // OS Error Callback function

@@ -43,7 +43,7 @@
 #   endif
 #endif
 
-#ifdef RTE_Compiler_EventRecorder
+#if defined(RTE_Compiler_EventRecorder) || defined(RTE_CMSIS_View_EventRecorder)
 #   include <EventRecorder.h>
 #endif
 
@@ -276,6 +276,16 @@ bool glcd_is_ready(uint_fast8_t layer)
     return true;
 }
 
+#if defined(RTE_CMSIS_Compiler_STDOUT_Custom)
+/// Put a character to the stdout
+/// \param[in]   ch  Character to output
+/// \return the character written, or -1 on write error
+int stdout_putchar (int ch)
+{
+    return (1 != SEGGER_RTT_Write(SEGGER_INDEX, &ch, 1)) ? -1 : ch;
+}
+#endif
+
 
 #define GLCD_LANDSCAPE      0
 
@@ -505,11 +515,12 @@ void before_scene_switching_handler(void *pTarget,
  **********************************************************************************************************************/
 void mipi_dsi_start_display(void)
 {
-#if defined(RTE_Compiler_EventRecorder) && defined(RTE_Compiler_IO_STDOUT_EVR)
+#if defined(RTE_Compiler_EventRecorder) || defined(RTE_CMSIS_View_EventRecorder)
     EventRecorderInitialize(0, 1);
 #endif
 
-
+    SEGGER_RTT_Init();
+    
     fsp_err_t err = FSP_SUCCESS;
 
     /* Get LCDC configuration */
@@ -580,7 +591,8 @@ void mipi_dsi_start_display(void)
 #endif
 
     while(1) {
-        lv_timer_handler();
+        lv_timer_periodic_handler();
+        delay_us(500);
     }
 
 #elif defined(RTE_Acceleration_Arm_2D)
