@@ -513,6 +513,12 @@ void before_scene_switching_handler(void *pTarget,
  * @param[in]  None.
  * @retval     None.
  **********************************************************************************************************************/
+
+void lv_demo_benchmark_complete(void)
+{
+    disp_enable_update();
+}
+
 void mipi_dsi_start_display(void)
 {
 #if defined(RTE_Compiler_EventRecorder) || defined(RTE_CMSIS_View_EventRecorder)
@@ -578,7 +584,11 @@ void mipi_dsi_start_display(void)
 
 
 #if LV_USE_DEMO_BENCHMARK
+    disp_disable_update();
 
+    printf("Running LVGL Benchmark... \r\n");
+    printf("When running benchmark, the LCD display will be disabled temporarily. Please stand by... \r\n");
+    
     lv_demo_benchmark();
     
     //lv_demo_benchmark_run_scene(LV_DEMO_BENCHMARK_MODE_RENDER_AND_DRIVER, 26*2-1);      // run scene no 31
