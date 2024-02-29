@@ -296,7 +296,7 @@ void Disp0_DrawBitmap (uint32_t x, uint32_t y, uint32_t width, uint32_t height, 
     uint32_t *pwSrc = (uint32_t *)bitmap;
     for (int_fast16_t i = 0; i < height; i++) {
         memcpy ((uint32_t *)pwDes, pwSrc, width * 4);
-        //SCB_CleanDCache_by_Addr(pwDes, width * 4);
+        SCB_CleanDCache_by_Addr(pwDes, width * 4);
         pwSrc += width;
         pwDes += g_hz_size;
     }
@@ -513,11 +513,12 @@ void before_scene_switching_handler(void *pTarget,
  * @param[in]  None.
  * @retval     None.
  **********************************************************************************************************************/
-
+#if defined(RTE_GRAPHICS_LVGL)
 void lv_demo_benchmark_complete(void)
 {
     disp_enable_update();
 }
+#endif
 
 void mipi_dsi_start_display(void)
 {

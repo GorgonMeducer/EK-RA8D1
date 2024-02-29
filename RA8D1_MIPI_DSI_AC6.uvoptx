@@ -88,7 +88,7 @@
         <sRmem>1</sRmem>
         <sRfunc>1</sRfunc>
         <sRbox>1</sRbox>
-        <tLdApp>1</tLdApp>
+        <tLdApp>0</tLdApp>
         <tGomain>0</tGomain>
         <tRbreak>1</tRbreak>
         <tRwatch>1</tRwatch>
@@ -113,7 +113,7 @@
         <tDllPa></tDllPa>
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
-        <tIfile></tIfile>
+        <tIfile>.\RA8D1_Debug.ini</tIfile>
         <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
@@ -125,7 +125,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(6010=261,375,738,971,0)(6018=-1,-1,-1,-1,0)(6019=-1,-1,-1,-1,0)(6008=135,169,429,354,0)(6009=1118,249,1412,434,0)(6014=120,153,378,884,0)(6015=1033,324,1291,946,0)(6003=135,169,717,705,0)(6000=535,315,988,647,0)</Name>
+          <Name>(6010=261,375,738,971,0)(6018=-1,-1,-1,-1,0)(6019=-1,-1,-1,-1,0)(6008=135,169,429,354,0)(6009=1118,249,1412,434,0)(6014=818,475,1076,1206,0)(6015=1033,324,1291,946,0)(6003=135,169,717,705,0)(6000=535,315,988,647,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -140,7 +140,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U1087291783 -O14 -S8 -ZTIFSpeedSel50000 -A0 -C0 -JU1 -JI192.168.1.130 -JP0 -RST0 -N00("ARM CoreSight JTAG-DP") -D00(6BA00477) -L00(4) -TO8210 -TC480000000 -TP41 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO3 -FD22000000 -FC2000 -FN3 -FF0RA8D1_2M.FLM -FS02000000 -FL01F8000 -FP0($$Device:R7FA8D1BH$Flash\RA8D1_2M.FLM) -FF1RA8D1_DATA_C2M.FLM -FS127000000 -FL13000 -FP1($$Device:R7FA8D1BH$Flash\RA8D1_DATA_C2M.FLM) -FF2RA8D1_CCONF.FLM -FS2300A100 -FL2200 -FP2($$Device:R7FA8D1BH$Flash\RA8D1_CCONF.FLM)</Name>
+          <Name>-U1087291783 -O78 -S8 -ZTIFSpeedSel50000 -A0 -C0 -JU1 -JI192.168.1.130 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(6BA02477) -L00(4) -TO8210 -TC480000000 -TP41 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO3 -FD22000000 -FC2000 -FN3 -FF0RA8D1_2M.FLM -FS02000000 -FL01F8000 -FP0($$Device:R7FA8D1BH$Flash\RA8D1_2M.FLM) -FF1RA8D1_DATA_C2M.FLM -FS127000000 -FL13000 -FP1($$Device:R7FA8D1BH$Flash\RA8D1_DATA_C2M.FLM) -FF2RA8D1_CCONF.FLM -FS2300A100 -FL2200 -FP2($$Device:R7FA8D1BH$Flash\RA8D1_CCONF.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -148,50 +148,116 @@
           <Name>UL2V8M(-S0 -C0 -P0 -FD22000000 -FC2000 -FN3 -FF0RA8D1_2M -FS02000000 -FL01F8000 -FF1RA8D1_DATA_C2M -FS127000000 -FL13000 -FF2RA8D1_CCONF -FS2300A100 -FL2200 -FP0($$Device:R7FA8D1BH$Flash\RA8D1_2M.FLM) -FP1($$Device:R7FA8D1BH$Flash\RA8D1_DATA_C2M.FLM) -FP2($$Device:R7FA8D1BH$Flash\RA8D1_CCONF.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>64</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>//Mac/WorkStation/Work/git/EK-RA8D1/ra_gen/main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>553</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>33647410</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:/Users/gabriel/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Source/cmsis_os2.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\RA8D1_MIPI_DSI\cmsis_os2.c\553</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>597</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>33647564</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:/Users/gabriel/AppData/Local/Arm/Packs/ARM/CMSIS-FreeRTOS/10.5.1/CMSIS/RTOS2/FreeRTOS/Source/cmsis_os2.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\RA8D1_MIPI_DSI\cmsis_os2.c\597</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>112</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\src\hal_entry.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>529</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\src\mipi_dsi_ep.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+      </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>SystemCoreClock,0x0A</ItemText>
+          <ItemText>g_vr_size,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_hz_size,0x0A</ItemText>
+          <ItemText>g_hstride,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_vr_size,0x0A</ItemText>
+          <ItemText>g_buffer_size,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_hstride,0x0A</ItemText>
+          <ItemText>gp_double_buffer</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_buffer_size,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>5</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>gp_single_buffer</ItemText>
-        </Ww>
-        <Ww>
-          <count>6</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>gp_double_buffer</ItemText>
-        </Ww>
-        <Ww>
-          <count>7</count>
-          <WinNumber>1</WinNumber>
           <ItemText>s_tDirectModeHelper,0x10</ItemText>
         </Ww>
         <Ww>
-          <count>8</count>
+          <count>5</count>
           <WinNumber>1</WinNumber>
           <ItemText>buf_32,0x10</ItemText>
         </Ww>
@@ -200,7 +266,7 @@
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>2</SubType>
-          <ItemText>0x20000000</ItemText>
+          <ItemText>0x22066C40</ItemText>
           <AccSizeX>4</AccSizeX>
         </Mm>
       </MemoryWindow1>
@@ -228,6 +294,16 @@
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow4>
+      <ScvdPack>
+        <Filename>C:\Users\gabriel\AppData\Local\Arm\Packs\ARM\CMSIS-View\1.1.0\EventRecorder\EventRecorder.scvd</Filename>
+        <Type>ARM::CMSIS-View@1.1.0</Type>
+        <SubType>1</SubType>
+      </ScvdPack>
+      <ScvdPack>
+        <Filename>C:\Users\gabriel\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\FreeRTOS.scvd</Filename>
+        <Type>ARM::CMSIS-FreeRTOS@10.5.1</Type>
+        <SubType>1</SubType>
+      </ScvdPack>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -662,6 +738,14 @@
   </Group>
 
   <Group>
+    <GroupName>::CMSIS-View</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>1</RteFlg>
+  </Group>
+
+  <Group>
     <GroupName>::Flex Software</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
@@ -670,8 +754,8 @@
   </Group>
 
   <Group>
-    <GroupName>::LVGL</GroupName>
-    <tvExp>1</tvExp>
+    <GroupName>::RTOS</GroupName>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>
