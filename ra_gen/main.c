@@ -62,3 +62,32 @@ int main(void)
     return 0;
 }
 #endif
+
+ #if __IS_COMPILER_ARM_COMPILER_6__
+__asm(".global __use_no_semihosting\n\t");
+#ifndef __MICROLIB
+__asm(".global __ARM_use_no_argv\n\t");
+#endif
+
+void _sys_exit(int ch)
+{
+    (void)ch;
+    while(1);
+}
+
+
+void _ttywrch(int ch)
+{
+    (void)ch;
+}
+
+#include <rt_sys.h>
+
+FILEHANDLE $Sub$$_sys_open(const char *name, int openmode)
+{
+    (void)name;
+    (void)openmode;
+    return 0;
+}
+
+#endif
