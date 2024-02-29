@@ -125,7 +125,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(6010=261,375,738,971,0)(6018=-1,-1,-1,-1,0)(6019=-1,-1,-1,-1,0)(6008=135,169,429,354,0)(6009=1118,249,1412,434,0)(6014=818,475,1076,1206,0)(6015=1033,324,1291,946,0)(6003=135,169,717,705,0)(6000=535,315,988,647,0)</Name>
+          <Name>(6010=261,375,738,971,0)(6018=-1,-1,-1,-1,0)(6019=-1,-1,-1,-1,0)(6008=875,494,1169,679,0)(6009=1118,249,1412,434,0)(6014=818,475,1076,1206,0)(6015=1033,324,1291,946,0)(6003=135,169,717,705,0)(6000=535,315,988,647,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -149,43 +149,11 @@
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <Breakpoint/>
-      <WatchWindow1>
-        <Ww>
-          <count>0</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_vr_size,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>1</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_hstride,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>2</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_buffer_size,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>gp_double_buffer</ItemText>
-        </Ww>
-        <Ww>
-          <count>4</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>s_tDirectModeHelper,0x10</ItemText>
-        </Ww>
-        <Ww>
-          <count>5</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>buf_32,0x10</ItemText>
-        </Ww>
-      </WatchWindow1>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>2</SubType>
-          <ItemText>0x22066C40</ItemText>
+          <ItemText>0xE0003000</ItemText>
           <AccSizeX>4</AccSizeX>
         </Mm>
       </MemoryWindow1>
@@ -213,16 +181,6 @@
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow4>
-      <ScvdPack>
-        <Filename>C:\Users\gabriel\AppData\Local\Arm\Packs\ARM\CMSIS-View\1.1.0\EventRecorder\EventRecorder.scvd</Filename>
-        <Type>ARM::CMSIS-View@1.1.0</Type>
-        <SubType>1</SubType>
-      </ScvdPack>
-      <ScvdPack>
-        <Filename>C:\Users\gabriel\AppData\Local\Arm\Packs\ARM\CMSIS-FreeRTOS\10.5.1\CMSIS\RTOS2\FreeRTOS\FreeRTOS.scvd</Filename>
-        <Type>ARM::CMSIS-FreeRTOS@10.5.1</Type>
-        <SubType>1</SubType>
-      </ScvdPack>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -657,14 +615,6 @@
   </Group>
 
   <Group>
-    <GroupName>::CMSIS-View</GroupName>
-    <tvExp>0</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>1</RteFlg>
-  </Group>
-
-  <Group>
     <GroupName>::Flex Software</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
@@ -673,16 +623,8 @@
   </Group>
 
   <Group>
-    <GroupName>::RTOS</GroupName>
-    <tvExp>0</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>1</RteFlg>
-  </Group>
-
-  <Group>
     <GroupName>::Utilities</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>

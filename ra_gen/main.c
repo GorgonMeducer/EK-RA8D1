@@ -81,13 +81,13 @@ void _ttywrch(int ch)
     (void)ch;
 }
 
-#include <rt_sys.h>
+//#include <rt_sys.h>
 
-FILEHANDLE $Sub$$_sys_open(const char *name, int openmode)
-{
-    (void)name;
-    (void)openmode;
-    return 0;
-}
+//FILEHANDLE $Sub$$_sys_open(const char *name, int openmode)
+//{
+//    (void)name;
+//    (void)openmode;
+//    return 0;
+//}
 
 #endif

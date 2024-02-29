@@ -694,7 +694,7 @@ void mipi_dsi_start_display(void)
 #ifndef LCD_TARGET_FPS
 #   define LCD_TARGET_FPS       60
 #endif
-
+    
     bool bRefreshLCD = false;
     while (1) {
     
