@@ -67,3 +67,4 @@ JLinkLog.txt
 RTE_Components.h
 Pre_Include_Global.h
 *.uvguix.*
+rasc_version.txt

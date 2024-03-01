@@ -94,7 +94,7 @@ extern "C" {
 // <o>Height of the PFB block
 // <i> The height of your PFB block size used in disp0
 #ifndef __DISP0_CFG_PFB_BLOCK_HEIGHT__
-#   define __DISP0_CFG_PFB_BLOCK_HEIGHT__                          415
+#   define __DISP0_CFG_PFB_BLOCK_HEIGHT__                          427
 #endif
 
 // <o>Width Alignment of generated PFBs
@@ -160,7 +160,7 @@ extern "C" {
 // <o> Dirty Region Pool Size <4-255>
 // <i> The number of dirty region items available for the dirty region optimization service
 #ifndef __DISP0_CFG_DIRTY_REGION_POOL_SIZE__
-#   define __DISP0_CFG_DIRTY_REGION_POOL_SIZE__                    8
+#   define __DISP0_CFG_DIRTY_REGION_POOL_SIZE__                    10
 #endif
 
 // <q> Swap the high and low bytes

@@ -289,9 +289,29 @@ int stdout_putchar (int ch)
 
 #define GLCD_LANDSCAPE      0
 
+#if __DISP0_CFG_COLOUR_DEPTH__ == 16
+#   include "__arm_2d_impl.h"
+#endif
+
 void Disp0_DrawBitmap (uint32_t x, uint32_t y, uint32_t width, uint32_t height, const uint8_t *bitmap) 
 {
-#if 1
+
+#if __DISP0_CFG_COLOUR_DEPTH__ == 16
+    static uint32_t s_wBuffer[  __DISP0_CFG_PFB_BLOCK_WIDTH__ 
+                             *  __DISP0_CFG_PFB_BLOCK_HEIGHT__];
+
+    __arm_2d_impl_rgb565_to_cccn888(
+        (uint16_t *)bitmap,
+        width,
+        s_wBuffer,
+        width,
+        (arm_2d_size_t []){{
+            width, height
+        }});
+    
+    bitmap = (uint8_t *)s_wBuffer;
+#endif
+
     volatile uint32_t *pwDes = gp_single_buffer + y * g_hz_size + x;
     uint32_t *pwSrc = (uint32_t *)bitmap;
     for (int_fast16_t i = 0; i < height; i++) {
@@ -300,34 +320,7 @@ void Disp0_DrawBitmap (uint32_t x, uint32_t y, uint32_t width, uint32_t height, 
         pwSrc += width;
         pwDes += g_hz_size;
     }
-#else
-  uint32_t        i, j;
-  uint32_t        dot;
-  const uint32_t *ptr_bmp;
-  ptr_bmp = ((const uint32_t *)bitmap) + (width * (height - 1));
-#if (GLCD_LANDSCAPE != 0)
-  dot     = (y * GLCD_WIDTH) + x;
-#else
-  dot     = ((g_vr_size - x) * g_hz_size) + y;
-#endif
 
-  for (i = 0; i < height; i++) {
-    for (j = 0; j < width; j++) {
-      gp_single_buffer[dot] = *ptr_bmp++;
-#if (GLCD_LANDSCAPE != 0)
-      dot += 1;
-#else
-      dot -= g_hz_size;
-#endif
-    }
-#if (GLCD_LANDSCAPE != 0)
-    dot +=  GLCD_WIDTH - j;
-#else
-    dot += (g_hz_size * j) + 1;
-#endif
-    ptr_bmp -= 2 * width;
-  }
-#endif
 }
 
 
