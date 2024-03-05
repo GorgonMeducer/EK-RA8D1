@@ -208,7 +208,9 @@ static void __on_scene_audiomark_frame_start(arm_2d_scene_t *ptScene)
         this.Processor[n].iProgress = (int16_t)nResult;
     }
 
-
+    for (uint_fast8_t n = 0; n < dimof(this.Processor); n++) {
+        progress_wheel_on_frame_start(&this.Processor[n].tWheel);
+    }
 
 }
 
@@ -511,22 +513,37 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
             case AUDIOMARK_CORTEX_M4:
             case AUDIOMARK_CORTEX_M33:
             case AUDIOMARK_CORTEX_M7:
-                progress_wheel_init(&this.Processor[n].tWheel, 
-                            c_tProcessorInfo[n].iWheelSize, 
-                            c_tProcessorInfo[n].tColour,
-                            GLCD_COLOR_WHITE, NULL);
-                            //&this.use_as__arm_2d_scene_t.ptDirtyRegion);
+                do {
+                    progress_wheel_cfg_t tCFG = {
+                        .tDotColour     = GLCD_COLOR_WHITE,                 /* dot colour */
+                        .tWheelColour   = c_tProcessorInfo[n].tColour,      /* arc colour */
+                        .iWheelDiameter = c_tProcessorInfo[n].iWheelSize,   /* diameter, 0 means use the mask's original size */
+                        .bUseDirtyRegions = true,                           /* use dirty regions */
+                    };
+
+                    progress_wheel_init(&this.Processor[n].tWheel, 
+                                        &this.use_as__arm_2d_scene_t,
+                                        &tCFG);
+                } while(0);
+
                 break;
             case AUDIOMARK_CORTEX_M55_HELIUM:
             case AUDIOMARK_CORTEX_M85_SCALER:
             case AUDIOMARK_CORTEX_M85_HELIUM:
-                progress_wheel_init(&this.Processor[n].tWheel, 
-                    c_tProcessorInfo[n].iWheelSize, 
-                    c_tProcessorInfo[n].tColour,
-                    GLCD_COLOR_WHITE,
-                    &c_tileQuaterArcBigMask,
-                    &c_tileBigWhiteDotMask, NULL);
-                    //&this.use_as__arm_2d_scene_t.ptDirtyRegion);
+                do {
+                    progress_wheel_cfg_t tCFG = {
+                        .ptileArcMask   = &c_tileQuaterArcBigMask,          /* mask for arc */
+                        .ptileDotMask   = &c_tileBigWhiteDotMask,           /* mask for dot */
+                        .tDotColour     = GLCD_COLOR_WHITE,                 /* dot colour */
+                        .tWheelColour   = c_tProcessorInfo[n].tColour,      /* arc colour */
+                        .iWheelDiameter = c_tProcessorInfo[n].iWheelSize,   /* diameter, 0 means use the mask's original size */
+                        .bUseDirtyRegions = true,                           /* use dirty regions */
+                    };
+
+                    progress_wheel_init(&this.Processor[n].tWheel, 
+                                        &this.use_as__arm_2d_scene_t,
+                                        &tCFG);
+                } while(0);
                 break;
             default:
                 assert(false);

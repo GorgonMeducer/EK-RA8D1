@@ -24,7 +24,7 @@
 #include "arm_2d_scene_meter.h"
 
 #include "arm_2d_helper.h"
-#include "arm_extra_controls.h"
+#include "arm_2d_example_controls.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -122,7 +122,7 @@ static void __on_scene_meter_depose(arm_2d_scene_t *ptScene)
     ARM_2D_OP_DEPOSE(this.Pointer.tOP);
 
     if (!this.bUserAllocated) {
-        free(ptScene);
+        __arm_2d_free_scratch_memory(ARM_2D_MEM_TYPE_UNSPECIFIED, ptScene);
     }
 }
 
@@ -183,8 +183,8 @@ static void __on_scene_meter_frame_complete(arm_2d_scene_t *ptScene)
     user_scene_meter_t *ptThis = (user_scene_meter_t *)ptScene;
     ARM_2D_UNUSED(ptThis);
 
-    /* switch to next scene after 5s */
-    if (arm_2d_helper_is_time_out(5000, &this.lTimestamp[0])) {
+    /* switch to next scene after 10s */
+    if (arm_2d_helper_is_time_out(10000, &this.lTimestamp[0])) {
         arm_2d_scene_player_switch_to_next_scene(ptScene->ptPlayer);
     }
 }
@@ -197,27 +197,14 @@ static void __before_scene_meter_switching_out(arm_2d_scene_t *ptScene)
 }
 
 static
-IMPL_PFB_ON_DRAW(__pfb_draw_scene_meter_background_handler)
-{
-    user_scene_meter_t *ptThis = (user_scene_meter_t *)pTarget;
-    ARM_2D_UNUSED(ptTile);
-    ARM_2D_UNUSED(bIsNewFrame);
-    /*-----------------------draw back ground begin-----------------------*/
-
-
-
-    /*-----------------------draw back ground end  -----------------------*/
-    arm_2d_op_wait_async(NULL);
-
-    return arm_fsm_rt_cpl;
-}
-
-static
 IMPL_PFB_ON_DRAW(__pfb_draw_scene_meter_handler)
 {
     user_scene_meter_t *ptThis = (user_scene_meter_t *)pTarget;
+    arm_2d_size_t tScreenSize = ptTile->tRegion.tSize;
+
     ARM_2D_UNUSED(ptTile);
     ARM_2D_UNUSED(bIsNewFrame);
+    ARM_2D_UNUSED(tScreenSize);
     
     arm_2d_canvas(ptTile, __canvas) {
     /*-----------------------draw the foreground begin-----------------------*/
@@ -376,7 +363,10 @@ user_scene_meter_t *__arm_2d_scene_meter_init(   arm_2d_scene_player_t *ptDispAd
     } while(0);
     
     if (NULL == ptThis) {
-        ptThis = (user_scene_meter_t *)malloc(sizeof(user_scene_meter_t));
+        ptThis = (user_scene_meter_t *)
+                    __arm_2d_allocate_scratch_memory(   sizeof(user_scene_meter_t),
+                                                        __alignof__(user_scene_meter_t),
+                                                        ARM_2D_MEM_TYPE_UNSPECIFIED);
         assert(NULL != ptThis);
         if (NULL == ptThis) {
             return NULL;
@@ -391,7 +381,6 @@ user_scene_meter_t *__arm_2d_scene_meter_init(   arm_2d_scene_player_t *ptDispAd
         .use_as__arm_2d_scene_t = {
             /* Please uncommon the callbacks if you need them
              */
-            //.fnBackground   = &__pfb_draw_scene_meter_background_handler,
             .fnScene        = &__pfb_draw_scene_meter_handler,
             .ptDirtyRegion  = (arm_2d_region_list_item_t *)s_tDirtyRegions,
             
