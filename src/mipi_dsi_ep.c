@@ -282,7 +282,11 @@ bool glcd_is_ready(uint_fast8_t layer)
 /// \return the character written, or -1 on write error
 int stdout_putchar (int ch)
 {
-    return (1 != SEGGER_RTT_Write(SEGGER_INDEX, &ch, 1)) ? -1 : ch;
+    //return (1 != SEGGER_RTT_Write(SEGGER_INDEX, &ch, 1)) ? -1 : ch;
+    
+    disp_adapter0_putchar(ch);
+    
+    return ch;
 }
 #endif
 
