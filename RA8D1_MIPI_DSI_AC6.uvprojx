@@ -539,6 +539,9 @@
           <GroupName>::Flex Software</GroupName>
         </Group>
         <Group>
+          <GroupName>::LVGL</GroupName>
+        </Group>
+        <Group>
           <GroupName>::Utilities</GroupName>
         </Group>
       </Groups>
@@ -658,8 +661,32 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Utilities" Cgroup="perf_counter" Csub="Porting" Cvariant="PMU" Cvendor="GorgonMeducer" Cversion="1.1.1" condition="PMU Devices">
-        <package name="perf_counter" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/GorgonMeducer/perf_counter/CMSIS-Pack/cmsis-pack/" vendor="GorgonMeducer" version="9.9.9"/>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Demos" Csub="Assets" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Demos" Csub="Benchmark" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="Demo-Benchmark">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Demos" Csub="Widgets" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential-Assets">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Essential" Cvendor="LVGL" Cversion="9.0.1-dev2">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential">
+        <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
@@ -943,46 +970,60 @@
         <targetInfos/>
       </file>
       <file attr="config" category="preIncludeGlobal" name="lv_conf_cmsis.h" version="2.1.4">
-        <instance index="0" removed="1">RTE\LVGL\lv_conf_cmsis.h</instance>
+        <instance index="0">RTE\LVGL\lv_conf_cmsis.h</instance>
         <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Essential" Cvendor="LVGL" Cversion="9.0.1-dev2"/>
         <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="sourceC" name="examples\porting\lv_port_disp_template.c" version="2.1.0">
-        <instance index="0" removed="1">RTE\LVGL\lv_port_disp_template.c</instance>
+        <instance index="0">RTE\LVGL\lv_port_disp_template.c</instance>
         <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential"/>
         <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="header" name="examples\porting\lv_port_disp_template.h" version="2.1.0">
-        <instance index="0" removed="1">RTE\LVGL\lv_port_disp_template.h</instance>
+        <instance index="0">RTE\LVGL\lv_port_disp_template.h</instance>
         <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential"/>
         <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="sourceC" name="examples\porting\lv_port_fs_template.c" version="2.1.0">
-        <instance index="0" removed="1">RTE\LVGL\lv_port_fs_template.c</instance>
+        <instance index="0">RTE\LVGL\lv_port_fs_template.c</instance>
         <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential"/>
         <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="header" name="examples\porting\lv_port_fs_template.h" version="2.1.0">
-        <instance index="0" removed="1">RTE\LVGL\lv_port_fs_template.h</instance>
+        <instance index="0">RTE\LVGL\lv_port_fs_template.h</instance>
         <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential"/>
         <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="sourceC" name="examples\porting\lv_port_indev_template.c" version="2.1.0">
-        <instance index="0" removed="1">RTE\LVGL\lv_port_indev_template.c</instance>
+        <instance index="0">RTE\LVGL\lv_port_indev_template.c</instance>
         <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential"/>
         <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="header" name="examples\porting\lv_port_indev_template.h" version="2.1.0">
-        <instance index="0" removed="1">RTE\LVGL\lv_port_indev_template.h</instance>
+        <instance index="0">RTE\LVGL\lv_port_indev_template.h</instance>
         <component Cbundle="LVGL9" Cclass="LVGL" Cgroup="Porting" Cvendor="LVGL" Cversion="9.0.1-dev2" condition="LVGL-Essential"/>
         <package name="lvgl" schemaVersion="1.7.28" url="https://raw.githubusercontent.com/lvgl/lvgl/master/env_support/cmsis-pack/" vendor="LVGL" version="9.0.1-dev2"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="header" condition="CoreM" name="CMSIS\RTOS2\FreeRTOS\Config\ARMCM\FreeRTOSConfig.h" version="10.4.0">
         <instance index="0" removed="1">RTE\RTOS\FreeRTOSConfig.h</instance>
