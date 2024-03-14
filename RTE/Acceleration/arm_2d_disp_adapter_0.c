@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2022 Arm Limited. All rights reserved.
+ * Copyright (c) 2009-2024 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -17,7 +17,6 @@
  */
 
 /*============================ INCLUDES ======================================*/
-
 
 #include "arm_2d.h"
 
@@ -159,9 +158,9 @@ IMPL_PFB_ON_DRAW(__disp_adapter0_draw_navigation)
         if (console_box_on_frame_start(&DISP0_CONSOLE.tConsole)) {
             DISP0_CONSOLE.lTimestamp = 0;
             if (!DISP0_CONSOLE.bShowConsole) {
-                DISP0_CONSOLE.tBackground.bIgnore = false;
+                arm_2d_dirty_region_item_ignore_set(&DISP0_CONSOLE.tBackground, false);
             } else {
-                DISP0_CONSOLE.tBackground.bIgnore = true;
+                arm_2d_dirty_region_item_ignore_set(&DISP0_CONSOLE.tBackground, true);
             }
             DISP0_CONSOLE.bShowConsole = true;
             DISP0_CONSOLE.chOpacity = 255;
@@ -688,8 +687,7 @@ void disp_adapter0_navigator_init(void)
                             &tCFG);
     } while(0);
 
-
-    DISP0_CONSOLE.tBackground.bIgnore = true;
+    arm_2d_dirty_region_item_ignore_set(&DISP0_CONSOLE.tBackground, true);
     
     arm_2d_region_t tScreen = {
         .tSize = {
@@ -726,7 +724,6 @@ void disp_adapter0_navigator_init(void)
 
 }
 #endif
-
 
 #if __DISP0_CFG_USE_CONSOLE__
 
@@ -768,6 +765,7 @@ bool disp_adapter0_putchar(uint8_t chChar)
 
     return console_box_putchar(&DISP0_CONSOLE.tConsole,chChar);
 }
+
 #endif
 
 /*----------------------------------------------------------------------------*
