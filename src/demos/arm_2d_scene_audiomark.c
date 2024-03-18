@@ -492,7 +492,7 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
             /* Please uncommon the callbacks if you need them
              */
             .fnScene        = &__pfb_draw_scene_audiomark_handler,
-            .ptDirtyRegion  = (arm_2d_region_list_item_t *)s_tDirtyRegions,
+            //.ptDirtyRegion  = (arm_2d_region_list_item_t *)s_tDirtyRegions,
             
 
             //.fnOnBGStart    = &__on_scene_audiomark_background_start,
@@ -518,7 +518,7 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
                         .tDotColour     = GLCD_COLOR_WHITE,                 /* dot colour */
                         .tWheelColour   = c_tProcessorInfo[n].tColour,      /* arc colour */
                         .iWheelDiameter = c_tProcessorInfo[n].iWheelSize,   /* diameter, 0 means use the mask's original size */
-                        .bUseDirtyRegions = false,                          /* use dirty regions */
+                        .bUseDirtyRegions = true,                          /* use dirty regions */
                     };
 
                     progress_wheel_init(&this.Processor[n].tWheel, 
@@ -537,7 +537,7 @@ user_scene_audiomark_t *__arm_2d_scene_audiomark_init(   arm_2d_scene_player_t *
                         .tDotColour     = GLCD_COLOR_WHITE,                 /* dot colour */
                         .tWheelColour   = c_tProcessorInfo[n].tColour,      /* arc colour */
                         .iWheelDiameter = c_tProcessorInfo[n].iWheelSize,   /* diameter, 0 means use the mask's original size */
-                        .bUseDirtyRegions = false,                          /* use dirty regions */
+                        .bUseDirtyRegions = true,                          /* use dirty regions */
                     };
 
                     progress_wheel_init(&this.Processor[n].tWheel, 

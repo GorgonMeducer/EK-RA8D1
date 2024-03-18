@@ -412,11 +412,11 @@ void scene_audiomark_loader(void)
     extern
     IMPL_PFB_ON_DRAW(__disp_adapter0_draw_navigation);
 
-    /* register event handler for evtOnDrawNavigation */
-    arm_2d_scene_player_register_on_draw_navigation_event_handler(
-                    &DISP0_ADAPTER,
-                    __disp_adapter0_draw_navigation,
-                    NULL);
+//    /* register event handler for evtOnDrawNavigation */
+//    arm_2d_scene_player_register_on_draw_navigation_event_handler(
+//                    &DISP0_ADAPTER,
+//                    __disp_adapter0_draw_navigation,
+//                    NULL);
 
     arm_2d_scene_audiomark_init(&DISP0_ADAPTER);
 }
@@ -471,13 +471,13 @@ void scene5_loader(void)
 typedef void scene_loader_t(void);
 
 static scene_loader_t * const c_SceneLoaders[] = {
-    scene0_loader,
-    scene1_loader,
-    scene_meter_loader,
-    //scene3_loader,
-    scene5_loader,
-    scene4_loader,
-    //scene2_loader,
+//    scene0_loader,
+//    scene1_loader,
+//    scene_meter_loader,
+//    //scene3_loader,
+//    scene5_loader,
+//    scene4_loader,
+//    //scene2_loader,
     scene_fitness_loader,
 
     scene_audiomark_loader,
