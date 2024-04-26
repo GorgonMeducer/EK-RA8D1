@@ -50,6 +50,7 @@
 #if defined(RTE_GRAPHICS_LVGL)
 #   include "lvgl.h"
 #   include "demos/lv_demos.h"
+#   include "src/draw/sw/blend/lv_draw_sw_blend_to_rgb565.h"
 
 #   include "lv_port_disp_template.h"
 #   include "lv_port_indev_template.h"
@@ -619,12 +620,47 @@ void mipi_dsi_start_display(void)
     
     //lv_demo_benchmark_run_scene(LV_DEMO_BENCHMARK_MODE_RENDER_AND_DRIVER, 26*2-1);      // run scene no 31
 #elif LV_USE_DEMO_RENDER
-    lv_demo_render(LV_DEMO_RENDER_SCENE_IMAGE_NORMAL, 128);
+    lv_demo_render(LV_DEMO_RENDER_SCENE_IMAGE_NORMAL_1, 255);
 #elif LV_USE_DEMO_WIDGETS
     lv_demo_widgets();
 #elif LV_USE_DEMO_MUSIC
     lv_demo_music();
 #endif
+
+    static uint8_t buf[256*1024];
+    do {
+        uint32_t i;
+        volatile uint32_t t = lv_tick_get();
+        for(i = 0; i < 1000; i++) {
+            lv_memset(buf, 0x12, sizeof(buf)); //32 bit writes under the hood
+        }
+
+        t = lv_tick_elaps(t); 
+        
+        printf("\r\nlv_memset: %d\r\n", t);
+    } while(0);
+    
+    do {
+        _lv_draw_sw_blend_fill_dsc_t dsc = {};
+        dsc.dest_buf = buf;
+        dsc.opa = 255;
+        dsc.dest_w = 256 / 2;
+        dsc.dest_h = 1024;
+        dsc.dest_stride = 256;
+
+        uint32_t i;
+        volatile uint32_t t = lv_tick_get();
+        for(i = 0; i < 1000; i++) {
+            lv_draw_sw_blend_color_to_rgb565(&dsc);
+        }
+
+        t = lv_tick_elaps(t);
+        printf("\r\nlv_draw: %d\r\n", t);
+
+    } while(0);
+    
+    
+
 
     while(1) {
         lv_timer_periodic_handler();
