@@ -57,6 +57,7 @@ static void disp_flush(lv_display_t * disp, const lv_area_t * area, uint8_t * px
 extern void Disp0_DrawBitmap (uint32_t x, uint32_t y, uint32_t width, uint32_t height, const uint8_t *bitmap);
 
 
+
 void lv_port_disp_init(void)
 {
     /*-------------------------
@@ -72,7 +73,7 @@ void lv_port_disp_init(void)
 
     /* Example 1
      * One buffer for partial rendering*/
-    static lv_color_t buf_1_1[MY_DISP_HOR_RES * MY_DISP_VER_RES / 10];          /*A buffer for 1/10 FB*/
+    static lv_color_t buf_1_1[MY_DISP_HOR_RES * MY_DISP_VER_RES / 10];
     lv_display_set_buffers(disp, buf_1_1, NULL, sizeof(buf_1_1), LV_DISPLAY_RENDER_MODE_PARTIAL);
 
 }

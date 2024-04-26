@@ -375,33 +375,13 @@ bool __disp_adapter0_request_2d_copy(   arm_2d_helper_3fb_t *ptThis,
 #endif
 
 #if defined(RTE_Acceleration_Arm_2D)
-#   include "demos/arm_2d_scene_meter.h"
-#   include "demos/arm_2d_scene_watch.h"
-#   include "demos/arm_2d_scene_fitness.h"
-#   include "demos/arm_2d_scene_audiomark.h"
+#include "arm_2d_scene_meter.h"
+#include "arm_2d_scene_fitness.h"
+#include "arm_2d_scene_alarm_clock.h"
+#include "arm_2d_scene_histogram.h"
+#include "arm_2d_demos.h"
 
 
-
-void scene_meter_loader(void) 
-{
-    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
-                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_RIGHT);
-    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
-    arm_2d_scene_meter_init(&DISP0_ADAPTER);
-}
-
-void scene_watch_loader(void) 
-{
-    arm_2d_scene_watch_init(&DISP0_ADAPTER);
-}
-
-void scene_fitness_loader(void) 
-{
-    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
-                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_LEFT);
-    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
-    arm_2d_scene_fitness_init(&DISP0_ADAPTER);
-}
 
 void scene_audiomark_loader(void) 
 {
@@ -421,66 +401,115 @@ void scene_audiomark_loader(void)
     arm_2d_scene_audiomark_init(&DISP0_ADAPTER);
 }
 
-void scene0_loader(void) 
+void scene_meter_loader(void) 
 {
     arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
-                                            ARM_2D_SCENE_SWITCH_MODE_FADE_WHITE);
-    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 3000);
-    
-extern void disp_adapter0_navigator_init(void);
-    disp_adapter0_navigator_init();
+                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_LEFT);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
 
-    arm_2d_scene0_init(&DISP0_ADAPTER);
+    arm_2d_scene_meter_init(&DISP0_ADAPTER);
 }
 
-void scene1_loader(void) 
-{
-    arm_2d_scene1_init(&DISP0_ADAPTER);
-}
-
-void scene2_loader(void) 
-{
-    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
-                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_UP);
-    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 4000);
-    arm_2d_scene2_init(&DISP0_ADAPTER);
-}
-
-void scene3_loader(void) 
-{
-    arm_2d_scene3_init(&DISP0_ADAPTER);
-}
-
-void scene4_loader(void) 
+void scene_fitness_loader(void) 
 {
     arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
                                             ARM_2D_SCENE_SWITCH_MODE_SLIDE_RIGHT);
     arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
-    arm_2d_scene4_init(&DISP0_ADAPTER);
+    arm_2d_scene_fitness_init(&DISP0_ADAPTER);
 }
 
-void scene5_loader(void) 
+void scene_alarm_clock_loader(void) 
 {
     arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
-                                            ARM_2D_SCENE_SWITCH_MODE_FADE_BLACK);
-    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 3000);
-    arm_2d_scene5_init(&DISP0_ADAPTER);
+                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_LEFT);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
+    arm_2d_scene_alarm_clock_init(&DISP0_ADAPTER);
 }
 
+void scene_histogram_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_ERASE_LEFT);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 1000);
+    arm_2d_scene_histogram_init(&DISP0_ADAPTER);
+}
+
+
+void scene_atom_loader(void) 
+{
+    arm_2d_scene_atom_init(&DISP0_ADAPTER);
+}
+
+void scene_basics_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_FADE_WHITE);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 3000);
+
+    arm_2d_scene_basics_init(&DISP0_ADAPTER);
+}
+
+void scene_progress_status_loader(void) 
+{
+    arm_2d_scene_progress_status_init(&DISP0_ADAPTER);
+}
+
+void scene_panel_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_RIGHT);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
+
+    arm_2d_scene_panel_init(&DISP0_ADAPTER);
+}
+
+void scene_gas_gauge_loader(void) 
+{
+    arm_2d_scene_player_set_switching_mode( &DISP0_ADAPTER,
+                                            ARM_2D_SCENE_SWITCH_MODE_SLIDE_DOWN);
+    arm_2d_scene_player_set_switching_period(&DISP0_ADAPTER, 500);
+    arm_2d_scene_gas_gauge_init(&DISP0_ADAPTER);
+}
+
+void scene_listview_loader(void) 
+{
+    arm_2d_scene_listview_init(&DISP0_ADAPTER);
+}
+
+void scene_menu_loader(void) 
+{
+    arm_2d_scene_menu_init(&DISP0_ADAPTER);
+}
+
+void scene_console_window_loader(void)
+{
+    arm_2d_scene_console_window_init(&DISP0_ADAPTER);
+}
 
 typedef void scene_loader_t(void);
 
 static scene_loader_t * const c_SceneLoaders[] = {
-//    scene0_loader,
-//    scene1_loader,
-//    scene_meter_loader,
-//    //scene3_loader,
-//    scene5_loader,
-//    scene4_loader,
-//    //scene2_loader,
-    scene_fitness_loader,
 
+#if 1
+    scene_basics_loader,
+    scene_progress_status_loader,
+    scene_console_window_loader,
+    scene_meter_loader,
+    scene_alarm_clock_loader,
+    scene_atom_loader,
+    scene_histogram_loader,
+    scene_gas_gauge_loader,
+    scene_listview_loader,
+    scene_menu_loader,
+
+    scene_panel_loader,
+    scene_fitness_loader,
     scene_audiomark_loader,
+#else
+    scene_histogram_loader,
+#endif
+
+
 };
 
 
@@ -499,7 +528,6 @@ void before_scene_switching_handler(void *pTarget,
     c_SceneLoaders[s_chIndex]();
     s_chIndex++;
 }
-
 
 #endif
 
@@ -582,7 +610,7 @@ void mipi_dsi_start_display(void)
 
 
 #if LV_USE_DEMO_BENCHMARK
-    disp_disable_update();
+    //disp_disable_update();
 
     printf("Running LVGL Benchmark... \r\n");
     printf("When running benchmark, the LCD display will be disabled temporarily. Please stand by... \r\n");
