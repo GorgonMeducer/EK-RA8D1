@@ -278,25 +278,25 @@ LOAD_REGION_FLASH FLASH_ORIGIN + NS_IMAGE_OFFSET ALIGN 0x80 LIMITED_FLASH_LENGTH
 
   BSS +0 NOCOMPRESS
   {
-    *(+ZI)
+    .ANY (+ZI)
     .ANY (.bss)
   }
 
   NOINIT +0 UNINIT NOCOMPRESS
   {
-    *(.bss.noinit)
+    .ANY(.bss.noinit)
   }
 #if 0
   ARM_LIB_HEAP +0 ALIGN 8 UNINIT NOCOMPRESS
   {
-    *(.bss.heap)
+    .ANY(.bss.heap)
   }
 
   ; ARM_LIB_STACK is not used in FSP, but it must be in the scatter file to avoid a linker error
   ARM_LIB_STACK +0 ALIGN 8 UNINIT
   {
-      *(.bss.stack)
-    *(.bss.stack.thread)
+    .ANY(.bss.stack)
+    .ANY(.bss.stack.thread)
   }
 #endif
 
@@ -450,21 +450,21 @@ LOAD_REGION_FLASH FLASH_ORIGIN + NS_IMAGE_OFFSET ALIGN 0x80 LIMITED_FLASH_LENGTH
 #if 1
   ARM_LIB_HEAP +0 ALIGN 8 UNINIT NOCOMPRESS
   {
-    *(.bss.heap)
+    .ANY(.bss.heap)
   }
 
   ; ARM_LIB_STACK is not used in FSP, but it must be in the scatter file to avoid a linker error
   ARM_LIB_STACK +0 ALIGN 8 UNINIT
   {
-      *(.bss.stack)
-    *(.bss.stack.thread)
+      .ANY(.bss.stack)
+    .ANY(.bss.stack.thread)
   }
 
 #endif
 
   DTCM_DATA +0 NOCOMPRESS DTCM_LENGTH
   {
-    *(.dtcm_data*)
+    .ANY(.dtcm_data*)
   }
 
   ; The required minimum ending alignment is an 8 byte boundary for ECC compatibility.
