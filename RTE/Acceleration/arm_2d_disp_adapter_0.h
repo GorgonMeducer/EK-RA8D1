@@ -50,7 +50,7 @@ extern "C" {
 //     <32=>    32Bits
 // <i> The colour depth of your screen
 #ifndef __DISP0_CFG_COLOUR_DEPTH__
-#   define __DISP0_CFG_COLOUR_DEPTH__                              32
+#   define __DISP0_CFG_COLOUR_DEPTH__                              16
 #endif
 
 // <o>Width of the screen <8-32767>
@@ -142,7 +142,7 @@ extern "C" {
 //     <1=>     Real FPS
 // <i> Decide the meaning of the real time FPS display
 #ifndef __DISP0_CFG_FPS_CACULATION_MODE__
-#   define __DISP0_CFG_FPS_CACULATION_MODE__                       0
+#   define __DISP0_CFG_FPS_CACULATION_MODE__                       1
 #endif
 
 // <q> Enable Dirty Region Debug Mode

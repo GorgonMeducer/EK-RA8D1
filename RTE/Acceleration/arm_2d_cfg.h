@@ -59,6 +59,12 @@ extern "C" {
 #   define __ARM_2D_CFG_SUPPORT_COLOUR_CHANNEL_ACCESS__             1
 #endif
 
+// <q>Enable ccca8888(ARGB8888) implicit conversion 
+// <i> This feature is disabled by default to save code size
+#ifndef __ARM_2D_CFG_SUPPORT_CCCA8888_IMPLICIT_CONVERSION__
+#   define __ARM_2D_CFG_SUPPORT_CCCA8888_IMPLICIT_CONVERSION__      0
+#endif
+
 // <q>Improve the Quality of IIR Blur
 // <i> Note that enabling this feature will half the performance of IIR Blur and only works correctly in Full framebuffer mode
 // <i> This feature is disabled by default to improve performance
@@ -106,6 +112,13 @@ extern "C" {
             |   ARM_2D_LOG_CHN_CONTROLS                                         \
             |   ARM_2D_LOG_CHN_APP)
 #endif
+
+// <q>Enable The Layout Debug Mode
+// <i> Arm-2D will mark the layout areas.
+#ifndef __ARM_2D_HELPER_CFG_LAYOUT_DEBUG_MODE__
+#   define __ARM_2D_HELPER_CFG_LAYOUT_DEBUG_MODE__                  0
+#endif
+
 // </h>
 
 // <h>Patches for improving performance
@@ -169,14 +182,14 @@ extern "C" {
 // <i> The width of your screen for running benchmark
 // <i> Default: 320
 #ifndef __GLCD_CFG_SCEEN_WIDTH__
-#   define __GLCD_CFG_SCEEN_WIDTH__                                     320
+#   define __GLCD_CFG_SCEEN_WIDTH__                                     480
 #endif
 
 // <o>Height of the screen <8-32767>
 // <i> The height of your screen for running benchmark
 // <i> Default: 240
 #ifndef __GLCD_CFG_SCEEN_HEIGHT__
-#   define __GLCD_CFG_SCEEN_HEIGHT__                                    240
+#   define __GLCD_CFG_SCEEN_HEIGHT__                                    854
 #endif
 
 // <o>Number of iterations <1-2000>
