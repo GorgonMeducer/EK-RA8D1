@@ -33,7 +33,7 @@
 #   include "cmsis_os2.h"
 #endif
 
-#if defined(RTE_Acceleration_Arm_2D)
+#if defined(RTE_Acceleration_Arm_2D_Helper_PFB)
 #   include "arm_2d_helper.h"
 #   include "arm_2d_scenes.h"
 
@@ -375,7 +375,7 @@ bool __disp_adapter0_request_2d_copy(   arm_2d_helper_3fb_t *ptThis,
 
 #endif
 
-#if defined(RTE_Acceleration_Arm_2D)
+#if defined(RTE_Acceleration_Arm_2D_Helper_PFB)
 #include "arm_2d_scene_meter.h"
 #include "arm_2d_scene_fitness.h"
 #include "arm_2d_scene_alarm_clock.h"

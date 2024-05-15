@@ -66,6 +66,11 @@ void __rt_entry(void);
 /*******************************************************************************************************************//**
  * MCU starts executing here out of reset. Main stack pointer is set up already.
  **********************************************************************************************************************/
+
+#if defined(__clang__)
+#   pragma clang diagnostic ignored "-Wnonnull"
+#endif
+
 __NO_RETURN
 void Reset_Handler (void)
 {
