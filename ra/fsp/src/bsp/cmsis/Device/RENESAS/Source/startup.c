@@ -76,14 +76,16 @@ void Reset_Handler (void)
 {
 
 #include "memory_regions.scat"
-    register uint32_t uMSP = __get_MSP();
+    volatile static uint32_t uMSP;
+    uMSP = __get_MSP();
+
     __set_MSP(RAM_START + RAM_LENGTH);      /* make it possible to use stack safely */
-    
     /* initialize DTCM and ITCM to a known status */
     memset((uint64_t *)DTCM_START, 0, DTCM_LENGTH);
-    memset((uint64_t *)ITCM_START, 0, ITCM_LENGTH);
-    
+    memset((uint64_t *)(ITCM_START + 8), 0, ITCM_LENGTH - 8);
     __set_MSP(uMSP);
+    
+    (*(volatile uint64_t *)ITCM_START) = 0;
     
     /* Initialize system using BSP. */
     SystemInit();
