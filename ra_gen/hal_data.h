@@ -80,7 +80,7 @@ void i2c_master_callback(i2c_master_callback_args_t * p_args);
             void glcdc_callback(display_callback_args_t * p_args);
             #endif
 
-            #define DISPLAY_IN_FORMAT_32BITS_RGB888_0
+            #define DISPLAY_IN_FORMAT_16BITS_RGB565_0
             #if defined (DISPLAY_IN_FORMAT_32BITS_RGB888_0) || defined (DISPLAY_IN_FORMAT_32BITS_ARGB8888_0)
             #define DISPLAY_BITS_PER_PIXEL_INPUT0 (32)
             #elif defined (DISPLAY_IN_FORMAT_16BITS_RGB565_0) || defined (DISPLAY_IN_FORMAT_16BITS_ARGB1555_0) || defined (DISPLAY_IN_FORMAT_16BITS_ARGB4444_0)

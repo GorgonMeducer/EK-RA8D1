@@ -433,7 +433,7 @@ mipi_dsi_instance_ctrl_t g_mipi_dsi0_ctrl;
                 .hsize               = DISPLAY_HSIZE_INPUT0,
                 .vsize               = DISPLAY_VSIZE_INPUT0,
                 .hstride             = DISPLAY_BUFFER_STRIDE_PIXELS_INPUT0,
-                .format              = DISPLAY_IN_FORMAT_32BITS_RGB888,
+                .format              = DISPLAY_IN_FORMAT_16BITS_RGB565,
                 .line_descending_enable = false,
                 .lines_repeat_enable = false,
                 .lines_repeat_times  = 0

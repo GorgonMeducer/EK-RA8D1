@@ -294,36 +294,16 @@ int stdout_putchar (int ch)
 
 #define GLCD_LANDSCAPE      0
 
-#if __DISP0_CFG_COLOUR_DEPTH__ == 16
-#   include "__arm_2d_impl.h"
-#endif
-
 void Disp0_DrawBitmap (uint32_t x, uint32_t y, uint32_t width, uint32_t height, const uint8_t *bitmap) 
 {
 
-#if __DISP0_CFG_COLOUR_DEPTH__ == 16
-    static uint32_t s_wBuffer[  __DISP0_CFG_PFB_BLOCK_WIDTH__ 
-                             *  __DISP0_CFG_PFB_BLOCK_HEIGHT__];
-
-    __arm_2d_impl_rgb565_to_cccn888(
-        (uint16_t *)bitmap,
-        width,
-        s_wBuffer,
-        width,
-        (arm_2d_size_t []){{
-            width, height
-        }});
-    
-    bitmap = (uint8_t *)s_wBuffer;
-#endif
-
-    volatile uint32_t *pwDes = gp_single_buffer + y * g_hz_size + x;
-    uint32_t *pwSrc = (uint32_t *)bitmap;
+    volatile uint16_t *phwDes = (volatile  uint16_t *)&fb_background[0][0] + y * g_hz_size + x;
+    uint16_t *phwSrc = (uint16_t *)bitmap;
     for (int_fast16_t i = 0; i < height; i++) {
-        memcpy ((uint32_t *)pwDes, pwSrc, width * 4);
-        SCB_CleanDCache_by_Addr(pwDes, width * 4);
-        pwSrc += width;
-        pwDes += g_hz_size;
+        memcpy ((uint16_t *)phwDes, phwSrc, width * 2);
+        SCB_CleanDCache_by_Addr(phwDes, width * 2);
+        phwSrc += width;
+        phwDes += g_hz_size;
     }
 
 }
@@ -620,47 +600,12 @@ void mipi_dsi_start_display(void)
     
     //lv_demo_benchmark_run_scene(LV_DEMO_BENCHMARK_MODE_RENDER_AND_DRIVER, 26*2-1);      // run scene no 31
 #elif LV_USE_DEMO_RENDER
-    lv_demo_render(LV_DEMO_RENDER_SCENE_ARC_IMAGE, 128);
+    lv_demo_render(LV_DEMO_RENDER_SCENE_IMAGE_NORMAL_1, 256-64);
 #elif LV_USE_DEMO_WIDGETS
     lv_demo_widgets();
 #elif LV_USE_DEMO_MUSIC
     lv_demo_music();
 #endif
-
-    static uint8_t buf[256*1024];
-    do {
-        uint32_t i;
-        volatile uint32_t t = lv_tick_get();
-        for(i = 0; i < 1000; i++) {
-            lv_memset(buf, 0x12, sizeof(buf)); //32 bit writes under the hood
-        }
-
-        t = lv_tick_elaps(t); 
-        
-        printf("\r\nlv_memset: %d\r\n", t);
-    } while(0);
-    
-    do {
-        _lv_draw_sw_blend_fill_dsc_t dsc = {};
-        dsc.dest_buf = buf;
-        dsc.opa = 255;
-        dsc.dest_w = 256 / 2;
-        dsc.dest_h = 1024;
-        dsc.dest_stride = 256;
-
-        uint32_t i;
-        volatile uint32_t t = lv_tick_get();
-        for(i = 0; i < 1000; i++) {
-            lv_draw_sw_blend_color_to_rgb565(&dsc);
-        }
-
-        t = lv_tick_elaps(t);
-        printf("\r\nlv_draw: %d\r\n", t);
-
-    } while(0);
-    
-    
-
 
     while(1) {
         lv_timer_periodic_handler();

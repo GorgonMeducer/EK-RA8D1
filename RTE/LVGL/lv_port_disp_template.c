@@ -32,6 +32,8 @@
     #define MY_DISP_VER_RES    854
 #endif
 
+#define BYTE_PER_PIXEL (LV_COLOR_FORMAT_GET_SIZE(LV_COLOR_FORMAT_RGB565)) /*will be 2 for RGB565 */
+
 /**********************
  *      TYPEDEFS
  **********************/
@@ -73,7 +75,8 @@ void lv_port_disp_init(void)
 
     /* Example 1
      * One buffer for partial rendering*/
-    static lv_color_t buf_1_1[MY_DISP_HOR_RES * MY_DISP_VER_RES / 10];
+    LV_ATTRIBUTE_MEM_ALIGN
+    static uint8_t buf_1_1[BYTE_PER_PIXEL * MY_DISP_HOR_RES * MY_DISP_VER_RES / 10];
     lv_display_set_buffers(disp, buf_1_1, NULL, sizeof(buf_1_1), LV_DISPLAY_RENDER_MODE_PARTIAL);
 
 }
@@ -136,24 +139,6 @@ static void disp_flush(lv_display_t * disp_drv, const lv_area_t * area, uint8_t 
             }
         } while(0);
 
-    #if defined(__RTE_ACCELERATION_ARM_2D__)
-        if (LV_COLOR_DEPTH == 16) {
-            /* we need a color format conversion */
-            static uint32_t buf_32[MY_DISP_HOR_RES * MY_DISP_VER_RES / 5];
-            
-            __arm_2d_impl_rgb565_to_cccn888(
-                (uint16_t *)px_map,
-                width,//stride / sizeof(uint16_t),
-                buf_32,
-                width,
-                (arm_2d_size_t []){{
-                    width, height
-                }});
-            
-            px_map = (uint8_t *)buf_32;
-        }
-    #endif
-
         Disp0_DrawBitmap(area->x1,               //!< x
                          area->y1,               //!< y
                          width,    //!< width
@@ -161,7 +146,6 @@ static void disp_flush(lv_display_t * disp_drv, const lv_area_t * area, uint8_t 
                          (const uint8_t *)px_map);
 
     }
-
 
     /*IMPORTANT!!!
      *Inform the graphics library that you are ready with the flushing*/
