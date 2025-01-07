@@ -139,11 +139,57 @@ static void disp_flush(lv_display_t * disp_drv, const lv_area_t * area, uint8_t 
             }
         } while(0);
 
+
+#if LV_COLOR_DEPTH == 8
+    extern
+    void __arm_2d_impl_gray8_to_rgb565( uint8_t *__RESTRICT pchSourceBase,
+                                        int16_t iSourceStride,
+                                        uint16_t *__RESTRICT phwTargetBase,
+                                        int16_t iTargetStride,
+                                        arm_2d_size_t *__RESTRICT ptCopySize);
+
+    static uint16_t s_hwFrameBuffer[MY_DISP_HOR_RES * MY_DISP_VER_RES];
+    
+    arm_2d_size_t size = {
+        .iWidth = width,
+        .iHeight = height,
+    };
+    __arm_2d_impl_gray8_to_rgb565( (uint8_t *)px_map,
+                                    width,
+                                    (uint16_t *)s_hwFrameBuffer,
+                                    width,
+                                    &size);
+    Disp0_DrawBitmap(area->x1, area->y1, width, height, (const uint8_t *)s_hwFrameBuffer);
+#elif LV_COLOR_DEPTH == 32
+    extern
+    void __arm_2d_impl_cccn888_to_rgb565(uint32_t *__RESTRICT pwSourceBase,
+                                        int16_t iSourceStride,
+                                        uint16_t *__RESTRICT phwTargetBase,
+                                        int16_t iTargetStride,
+                                        arm_2d_size_t *__RESTRICT ptCopySize);
+
+    arm_2d_size_t size = {
+        .iWidth = width,
+        .iHeight = height,
+    };
+    __arm_2d_impl_cccn888_to_rgb565((uint32_t *)px_map,
+                                    width,
+                                    (uint16_t *)px_map,
+                                    width,
+                                    &size);
+    Disp0_DrawBitmap(area->x1, area->y1, width, height, px_map);
+#else
+    Disp0_DrawBitmap(area->x1, area->y1, width, height, px_map);
+#endif
+
+
+#if 0
         Disp0_DrawBitmap(area->x1,               //!< x
                          area->y1,               //!< y
                          width,    //!< width
                          height,    //!< height
                          (const uint8_t *)px_map);
+#endif
 
     }
 

@@ -140,7 +140,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U1085878591 -O78 -S8 -ZTIFSpeedSel50000 -A0 -C0 -JU1 -JI192.168.1.130 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(6BA02477) -L00(4) -TO8210 -TC480000000 -TP41 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO3 -FD22000000 -FC2000 -FN3 -FF0RA8D1_2M.FLM -FS02000000 -FL01F8000 -FP0($$Device:R7FA8D1BH$Flash\RA8D1_2M.FLM) -FF1RA8D1_DATA_C2M.FLM -FS127000000 -FL13000 -FP1($$Device:R7FA8D1BH$Flash\RA8D1_DATA_C2M.FLM) -FF2RA8D1_CCONF.FLM -FS2300A100 -FL2200 -FP2($$Device:R7FA8D1BH$Flash\RA8D1_CCONF.FLM)</Name>
+          <Name>-U1085878591 -O78 -S8 -ZTIFSpeedSel50000 -A0 -C0 -JU1 -JI192.168.1.130 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(6BA02477) -L00(4) -TO8210 -TC480000000 -TP41 -TDS804F -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO3 -FD22000000 -FC2000 -FN3 -FF0RA8D1_2M.FLM -FS02000000 -FL01F8000 -FP0($$Device:R7FA8D1BH$Flash\RA8D1_2M.FLM) -FF1RA8D1_DATA_C2M.FLM -FS127000000 -FL13000 -FP1($$Device:R7FA8D1BH$Flash\RA8D1_DATA_C2M.FLM) -FF2RA8D1_CCONF.FLM -FS2300A100 -FL2200 -FP2($$Device:R7FA8D1BH$Flash\RA8D1_CCONF.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -152,18 +152,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>604</LineNumber>
+          <LineNumber>473</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>33637476</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:/Users/gabriel/AppData/Local/Arm/Packs/ARM/CMSIS-Compiler/2.1.0/source/armcc/retarget_io.c</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>C:\Users\gabriel\AppData\Local\Arm\Packs\LVGL\lvgl\9.2.2\src\draw\sw\arm2d\lv_draw_sw_arm2d.h</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\RA8D1_MIPI_DSI\retarget_io.c\604</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <MemoryWindow1>
@@ -573,7 +573,7 @@
 
   <Group>
     <GroupName>::Acceleration</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>
@@ -597,7 +597,7 @@
 
   <Group>
     <GroupName>::Flex Software</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>
