@@ -148,24 +148,7 @@
           <Name>UL2V8M(-S0 -C0 -P0 -FD22000000 -FC2000 -FN3 -FF0RA8D1_2M -FS02000000 -FL01F8000 -FF1RA8D1_DATA_C2M -FS127000000 -FL13000 -FF2RA8D1_CCONF -FS2300A100 -FL2200 -FP0($$Device:R7FA8D1BH$Flash\RA8D1_2M.FLM) -FP1($$Device:R7FA8D1BH$Flash\RA8D1_DATA_C2M.FLM) -FP2($$Device:R7FA8D1BH$Flash\RA8D1_CCONF.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>473</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\Users\gabriel\AppData\Local\Arm\Packs\LVGL\lvgl\9.2.2\src\draw\sw\arm2d\lv_draw_sw_arm2d.h</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
@@ -445,7 +428,7 @@
 
   <Group>
     <GroupName>:Renesas RA Smart Configurator:Common Sources</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -605,7 +588,7 @@
 
   <Group>
     <GroupName>::LVGL</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>
